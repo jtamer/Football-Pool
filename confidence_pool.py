@@ -5,17 +5,23 @@ import pickle
 import random
 import cp_init
 
-WEEKS = cp_init.TOT_WEEKS
-weeks = ['Week'+str(i+1) for i in range(WEEKS)]
-WEEK = cp_init.CUR_WEEK
+def get_weeks():
+	with open(cp_init.SCHED_PATH, encoding='utf-8') as f:
+		s = f.readlines()
+		s = [x.strip() for x in s]
+		return len([x for x in s if 'Week' in x])
 
-MAX = cp_init.MAX  # max score for the top pick. 
+WEEKS = get_weeks()
+weeks = ['Week'+str(i+1) for i in range(WEEKS)] 
+WEEK = cp_init.CUR_WEEK  
 
 patterns = []
 with open(cp_init.PATTERNS_PATH, encoding='utf-8') as f:
 	patterns = f.readlines()
 	patterns = [line.strip() for line in patterns]	
-	patterns = tuple(eval(line) for line in patterns)
+	patterns = tuple(eval(line) for line in patterns) 
+	
+MAX = int(len({patterns[i][1] for i in range(len(patterns))}) / 2) # max score for the top pick  e.g. 16. 
 	
 players = []
 with open(cp_init.PLAYERS_PATH, encoding='utf-8') as f:
@@ -100,7 +106,7 @@ def save_picks(player_picks, path=cp_init.PKL_PATH):
 	picks[(w_indx*len(players)) + p_indx] = player_picks
 	dump_picks(picks, path)
 	
-def gen_random(week=WEEK):
+def gen_random_results(week=WEEK):
 	""" Returns random game results for a given week
 	    Used internally for testing and development """
 	if week != WEEK:
@@ -109,7 +115,7 @@ def gen_random(week=WEEK):
 	r = [random.choice(list(s[i].split())) for i in range(len(s))]
 	return r
 
-results = gen_random()  
+results = gen_random_results()  
 
 def load_random_players_picks(week=WEEK):
 	""" Saves random picks for all players for a given week.
@@ -119,6 +125,7 @@ def load_random_players_picks(week=WEEK):
 	else: s = cur_week_sched
 	for player in players:
 		picks = [random.choice(list(s[i].split())) for i in range(len(s))]
+		random.shuffle(picks)
 		picks = [[week,player]] + picks
 		save_picks(picks, cp_init.PKL_PATH)		
 
@@ -129,6 +136,7 @@ def load_random_player_picks(player, week=WEEK):
 		s = get_schedule(week) 
 	else: s = cur_week_sched
 	picks = [random.choice(list(s[i].split())) for i in range(len(s))]
+	random.shuffle(picks)
 	picks = [[week,player]] + picks
 	save_picks(picks, cp_init.PKL_PATH)		
 
@@ -138,10 +146,10 @@ def get_score(player, week=WEEK):
 		s = get_schedule(week) 
 	else: s = cur_week_sched
 	weights = [i for i in range(MAX,MAX-len(s),-1)]
-	#results = gen_random(week) # for testing and dev. replace with actual game results
+	#results = gen_random_results(week) # for testing and dev. replace with actual game results
 	picks = get_picks(player, cp_init.PKL_PATH, week)
 	for i in range(len(weights)): 
-		if results[i] == picks[i+1]:
+		if picks[i+1] in results:
 			score += weights[i]
 	return score
 
