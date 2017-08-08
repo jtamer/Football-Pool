@@ -2,50 +2,312 @@
   <body>
     <select id="week" onchange="updateCurrentWeek()">
     </select>
-    <div id="message"></div>
+    <table>
+      <tr>
+        <td valign="top">
+          <table id="schedule" cellpadding="0" cellspacing="0"></table>
+        </td>
+        <td width="100">&nbsp;</td>
+        <td valign="top">
+          <table id="picks" cellpadding="0" cellspacing="0"></table>
+        </td>
+      </tr>
+    </table>
 <script>
 
-var WEEKS = [
-    'Week1', 'Week2', 'Week3', 'Week4', 'Week5',
-    'Week6', 'Week7', 'Week8', 'Week9', 'Week10',
-    'Week11', 'Week12', 'Week13', 'Week14', 'Week15',
-    'Week16', 'Week17'];
-var SCHEDULES = {
-    "Week1": [["JET", "BUF"], ["BAL", "CIN"], ["ATL", "DET"], ["TB", "MIA"], ["JAX", "HOU"], ["SEA", "GB"], ["GIA", "DAL"], ["LAC", "DEN"], ["ATL", "CHI"], ["PIT", "CLE"], ["OAK", "TEN"], ["PHI", "WAS"], ["IND", "RAM"], ["CAR", "SF"], ["NO", "MIN"]],
-    "Week2": [["AZ", "IND"], ["NE", "NO"], ["CHI", "TB"], ["TEN", "JAX"], ["JET", "OAK"], ["DAL", "DEN"], ["SF", "SEA"], ["DET", "GIA"], ["PHI", "KC"], ["MIN", "PIT"], ["BUF", "CAR"], ["CLE", "BAL"], ["MIA", "LAC"], ["WAS", "RAM"], ["GB", "ATL"]],
-    "Week3": [["BAL", "JAX"], ["PIT", "CHI"], ["CLE", "IND"], ["HOU", "NE"], ["GIA", "PHI"], ["SEA", "TEN"], ["KC", "LAC"], ["DAL", "AZ"], ["DEN", "BUF"], ["ATL", "DET"], ["TB", "MIN"], ["MIA", "JET"], ["NO", "CAR"], ["CIN", "GB"], ["OAK", "WAS"]],
-    "Week4": [["NO", "MIA"], ["CIN", "CLE"], ["DET", "MIN"], ["JAX", "JET"], ["TEN", "HOU"], ["PHI", "LAC"], ["OAK", "DEN"], ["WAS", "KC"], ["BUF", "ATL"], ["RAM", "DAL"], ["CAR", "NE"], ["PIT", "BAL"], ["SF", "AZ"], ["GIA", "TB"], ["IND", "SEA"]],
-    "Week5": [["BUF", "CIN"], ["CAR", "DET"], ["TEN", "MIA"], ["AZ", "PHI"], ["BAL", "OAK"], ["GB", "DAL"], ["MIN", "CHI"], ["JET", "CLE"], ["SF", "IND"], ["LAC", "GIA"], ["JAX", "PIT"], ["SEA", "RAM"], ["KC", "HOU"]],
-    "Week6": [["PHI", "CAR"], ["GB", "MIN"], ["NE", "JET"], ["CHI", "BAL"], ["TB", "AZ"], ["PIT", "KC"], ["GIA", "DEN"], ["MIA", "ATL"], ["DET", "NO"], ["SF", "WAS"], ["CLE", "HOU"], ["RAM", "JAX"], ["LAC", "OAK"], ["IND", "TEN"]],
-    "Week7": [["TB", "BUF"], ["TEN", "CLE"], ["JAX", "IND"], ["JET", "MIA"], ["CIN", "PIT"], ["SEA", "GIA"], ["ATL", "NE"], ["CAR", "CHI"], ["NO", "GB"], ["AZ", "RAM"], ["BAL", "MIN"], ["DAL", "SF"], ["DEN", "LAC"], ["WAS", "PHI"]],
-    "Week8": [["CAR", "CHI"], ["NO", "GB"], ["AZ", "RAM"], ["BAL", "MIN"], ["DAL", "SF"], ["DEN", "LAC"], ["WAS", "PHI"], ["OAK", "BUF"], ["LAC", "NE"], ["ATL", "JET"], ["CAR", "TB"], ["DAL", "WAS"], ["DEN", "KC"]],
-    "Week9": [["BAL", "TEN"], ["RAM", "GIA"], ["ATL", "CAR"], ["IND", "HOU"], ["WAS", "SEA"], ["OAK", "MIA"], ["TB", "NO"], ["DEN", "PHI"], ["CIN", "JAX"], ["AZ", "SF"], ["KC", "DAL"], ["DET", "GB"]],
-    "Week10": [["NO", "BUF"], ["CLE", "DET"], ["PIT", "IND"], ["MIN", "WAS"], ["HOU", "RAM"], ["GIA", "SF"], ["MIA", "CAR"], ["GB", "CHI"], ["CIN", "TEN"], ["JET", "TB"], ["LAC", "JAX"], ["DAL", "ATL"], ["NE", "DEN"]],
-    "Week11": [["DET", "CHI"], ["BAL", "GB"], ["WAS", "NO"], ["AZ", "HOU"], ["CIN", "DEN"], ["PHI", "DAL"], ["JAX", "CLE"], ["RAM", "MIN"], ["KC", "GIA"], ["BUF", "LAC"], ["NE", "OAK"], ["ATL", "SEA"]],
-    "Week12": [["MIN", "DET"], ["GIA", "WAS"], ["CLE", "CIN"], ["BUF", "KC"], ["CAR", "JET"], ["NO", "RAM"], ["DEN", "OAK"], ["GB", "PIT"], ["LAC", "DAL"], ["TB", "ATL"], ["TEN", "IND"], ["MIA", "NE"], ["CHI", "PHI"], ["SEA", "SF"], ["JAX", "AZ"], ["HOU", "BAL"]],
-    "Week13": [["MIN", "ATL"], ["SF", "CHI"], ["HOU", "TEN"], ["CAR", "NO"], ["IND", "JAX"], ["CLE", "LAC"], ["RAM", "AZ"], ["PIT", "CIN"], ["NE", "BUF"], ["TB", "GB"], ["DEN", "MIA"], ["KC", "JET"], ["DET", "BAL"], ["GIA", "OAK"], ["PHI", "SEA"]],
-    "Week14": [["IND", "BUF"], ["GB", "CLE"], ["DET", "TB"], ["SEA", "JAX"], ["JET", "DEN"], ["WAS", "LAC"], ["DAL", "GIA"], ["NE", "MIA"], ["CHI", "CIN"], ["OAK", "KC"], ["MIN", "CAR"], ["SF", "HOU"], ["TEN", "AZ"], ["PHI", "RAM"], ["BAL", "PIT"]],
-    "Week15": [["ATL", "TB"], ["LAC", "KC"], ["BAL", "CLE"], ["JET", "NO"], ["AZ", "WAS"], ["HOU", "JAX"], ["NE", "PIT"], ["DAL", "OAK"], ["CHI", "DET"], ["MIA", "BUF"], ["CIN", "MIN"], ["PHI", "GIA"], ["GB", "CAR"], ["RAM", "SEA"], ["TEN", "SF"]],
-    "Week16": [["IND", "BAL"], ["CLE", "CHI"], ["RAM", "TEN"], ["BUF", "NE"], ["LAC", "JET"], ["TB", "CAR"], ["SEA", "DAL"], ["PIT", "HOU"], ["MIN", "GB"], ["DET", "CIN"], ["MIA", "KC"], ["ATL", "NO"], ["DEN", "WAS"], ["JAX", "SF"], ["GIA", "AZ"], ["OAK", "PHI"]],
-    "Week17": [["CAR", "ATL"], ["JAX", "TEN"], ["BUF", "MIA"], ["JET", "NE"], ["DAL", "PHI"], ["NO", "TB"], ["KC", "DEN"], ["OAK", "LAC"], ["GB", "DET"], ["HOU", "IND"], ["CHI", "MIN"], ["WAS", "GIA"], ["CLE", "PIT"], ["CIN", "BAL"], ["SF", "RAM"], ["AZ", "SEA"]]};
+var DATA = {
+  "teams": {
+    "Cardinals": {
+      "logo": "5Mh3xcc8uAsxAi3WZvfEyQ",
+      "city": "Arizona",
+      "name": "Cardinals"
+    },
+    "Falcons": {
+      "logo": "QNdwQPxtIRYUhnMBYq-bSA",
+      "city": "Atlanta",
+      "name": "Falcons"
+    },
+    "Ravens": {
+      "logo": "1vlEqqoyb9uTqBYiBeNH-w",
+      "city": "Baltimore",
+      "name": "Ravens"
+    },
+    "Bills": {
+      "logo": "_RMCkIDTISqCPcSoEvRDhg",
+      "city": "Buffalo",
+      "name": "Bills"
+    },
+    "Panthers": {
+      "logo": "4BdHvKq4Iyxsp8WaAbpDuQ",
+      "city": "Carolina",
+      "name": "Panthers"
+    },
+    "Bears": {
+      "logo": "7uaGv3B13mXyBhHcTysHcA",
+      "city": "Chicago",
+      "name": "Bears"
+    },
+    "Bengals": {
+      "logo": "wDDRqMa40nidAOA5883Vmw",
+      "city": "Cincinnati",
+      "name": "Bengals"
+    },
+    "Browns": {
+      "logo": "bTzlW33n9s53DxRzmlZXyg",
+      "city": "Cleveland",
+      "name": "Browns"
+    },
+    "Cowboys": {
+      "logo": "-zeHm0cuBjZXc2HRxRAI0g",
+      "city": "Dallas",
+      "name": "Cowboys"
+    },
+    "Broncos": {
+      "logo": "ZktET_o_WU6Mm1sJzJLZhQ",
+      "city": "Denver",
+      "name": "Broncos"
+    },
+    "Lions": {
+      "logo": "WE1l856fyyHh6eAbbb8hQQ",
+      "city": "Detroit",
+      "name": "Lions"
+    },
+    "Packers": {
+      "logo": "IlA4VGrUHzSVLCOcHsRKgg",
+      "city": "Green Bay",
+      "name": "Packers"
+    },
+    "Texans": {
+      "logo": "sSUn9HRpYLQtEFF2aG9T8Q",
+      "city": "Houston",
+      "name": "Texans"
+    },
+    "Colts": {
+      "logo": "zOE7BhKadEjaSrrFjcnR4w",
+      "city": "Indianapolis",
+      "name": "Colts"
+    },
+    "Jaguars": {
+      "logo": "HLfqVCxzVx5CUDQ07GLeWg",
+      "city": "Jacksonville",
+      "name": "Jaguars"
+    },
+    "Chiefs": {
+      "logo": "5N0l1KbG1BHPyP8_S7SOXg",
+      "city": "Kansas City",
+      "name": "Chiefs"
+    },
+    "Rams": {
+      "logo": "UyYc_V_6Vabrvr7ous98_A",
+      "city": "Los Angeles",
+      "name": "Rams"
+    },
+    "Dolphins": {
+      "logo": "1ysKnl7VwOQO8g94gbjKdQ",
+      "city": "Miami",
+      "name": "Dolphins"
+    },
+    "Vikings": {
+      "logo": "Vmg4u0BSYZ-1Mc-5uyvxHg",
+      "city": "Minnesota",
+      "name": "Vikings"
+    },
+    "Patriots": {
+      "logo": "z89hPEH9DZbpIYmF72gSaw",
+      "city": "New England",
+      "name": "Patriots"
+    },
+    "Saints": {
+      "logo": "AC5-UEeN3V_fjkdFXtHWfQ",
+      "city": "New Orleans",
+      "name": "Saints"
+    },
+    "Giants": {
+      "logo": "q8qdTYh-OWR5uO_QZxFENw",
+      "city": "New York",
+      "name": "Giants"
+    },
+    "Jets": {
+      "logo": "Rb4y9m3hkTcYVmdl10geqw",
+      "city": "New York",
+      "name": "Jets"
+    },
+    "Raiders": {
+      "logo": "QysqoqJQsTbiJl8sPL12Yg",
+      "city": "Oakland",
+      "name": "Raiders"
+    },
+    "Eagles": {
+      "logo": "s4ab0JjXpDOespDSf9Z14Q",
+      "city": "Philadelphia",
+      "name": "Eagles"
+    },
+    "Steelers": {
+      "logo": "mdUFLAswQ4jZ6V7jXqaxig",
+      "city": "Pittsburgh",
+      "name": "Steelers"
+    },
+    "Chargers": {
+      "logo": "tmQHdnwuMcA9n69f5rBr0w",
+      "city": "San Diego",
+      "name": "Chargers"
+    },
+    "49ers": {
+      "logo": "ku3s7M4k5KMagYcFTCie_g",
+      "city": "San Francisco",
+      "name": "49ers"
+    },
+    "Seahawks": {
+      "logo": "iVPY42GLuHmD05DiOvNSVg",
+      "city": "Seattle",
+      "name": "Seahawks"
+    },
+    "Buccaneers": {
+      "logo": "cv5_3oTDQB0gT7l0g2gSGg",
+      "city": "Tampa Bay",
+      "name": "Buccaneers"
+    },
+    "Titans": {
+      "logo": "9J9dhhLeSa3syZ1bWXRjaw",
+      "city": "Tennessee",
+      "name": "Titans"
+    },
+    "Redskins": {
+      "logo": "z_Or7w7bQ_ALmWUNsdd7AQ",
+      "city": "Washington",
+      "name": "Redskins"
+    }
+  },
+  "weeks": [
+    {
+      "week_num": 1,
+      "start": "2017-09-07",
+      "end": "2017-09-11",
+      "games": [
+        ["Chiefs", "Patriots"],
+        ["Jets", "Bills"],
+        ["Jaguars", "Texans"],
+        ["Steelers", "Browns"],
+        ["Cardinals", "Lions"],
+        ["Buccaneers", "Dolphins"],
+        ["Falcons", "Bears"],
+        ["Raiders", "Titans"],
+        ["Ravens", "Bengals"],
+        ["Eagles", "Redskins"],
+        ["Colts", "Rams"],
+        ["Panthers", "49ers"],
+        ["Seahawks", "Packers"],
+        ["Giants", "Cowboys"],
+        ["Saints", "Vikings"],
+        ["Chargers", "Broncos"]
+      ]
+    },
+    {
+      "week_num": 2,
+      "start": "2017-09-14",
+      "end": "2017-09-18",
+      "games": [
+        ["Texans", "Bengals"],
+        ["Bills", "Panthers"],
+        ["Bears", "Buccaneers"],
+        ["Vikings", "Steelers"],
+        ["Cardinals", "Colts"],
+        ["Patriots", "Saints"],
+        ["Browns", "Ravens"],
+        ["Eagles", "Chiefs"],
+        ["Titans", "Jaguars"],
+        ["Jets", "Raiders"],
+        ["Dolphins", "Chargers"],
+        ["Cowboys", "Broncos"],
+        ["49ers", "Seahawks"],
+        ["Redskins", "Rams"],
+        ["Packers", "Falcons"],
+        ["Lions", "Giants"]
+      ]
+    }
+  ]
+};
+
+var STATE = {};
 
 function updateCurrentWeek() {
-  var schedule = SCHEDULES[document.getElementById('week').value];
-  var innerHTML = '';
-  for (var gameIndex in schedule) {
-    var game = schedule[gameIndex];
-    innerHTML += game[0] + ' vs ' + game[1] + '<br>';
+  var week = DATA.weeks[document.getElementById('week').value];
+  var schedule = document.getElementById('schedule');
+  STATE.nextPickValue = 16;
+  document.getElementById('picks').innerHTML = '';
+  schedule.innerHTML = '';
+  for (var gameIndex in week.games) {
+    schedule.appendChild(gameRow(gameIndex));
   }
-  document.getElementById('message').innerHTML = innerHTML;
+}
+
+function gameRow(gameIndex) {
+  var week = DATA.weeks[document.getElementById('week').value];
+  var game = week.games[gameIndex];
+  var tr = document.createElement('tr');
+  tr.setAttribute('id', 'game' + gameIndex);
+  var awayTeam = DATA.teams[game[0]];
+  tr.appendChild(teamImageCell(awayTeam, gameIndex, true));
+  tr.appendChild(teamNameCell(awayTeam, gameIndex, true));
+  var td = document.createElement('td');
+  td.innerHTML = '@';
+  tr.appendChild(td);
+  var homeTeam = DATA.teams[game[1]];
+  tr.appendChild(teamImageCell(homeTeam, gameIndex, true));
+  tr.appendChild(teamNameCell(homeTeam, gameIndex, true));
+  return tr;
+}
+
+function teamRow(team, gameIndex) {
+  var tr = document.createElement('tr');
+  var td = document.createElement('td');
+  td.innerHTML = STATE.nextPickValue;
+  STATE.nextPickValue -= 1;
+  tr.appendChild(td);
+  tr.appendChild(teamImageCell(team, gameIndex, false));
+  tr.appendChild(teamNameCell(team, gameIndex, false));
+  return tr;
+}
+
+function teamImageCell(team, gameIndex, isBeingPicked) {
+  var td = document.createElement('td');
+  var link = document.createElement('a');
+  link.setAttribute('href', '#');
+  link.innerHTML = '<img src="https://ssl.gstatic.com/onebox/media/sports/logos/' + team.logo + '_96x72.png">';
+  link.onclick = onTeamClick(team, gameIndex, isBeingPicked);
+  td.appendChild(link);
+  return td;
+}
+
+function teamNameCell(team, gameIndex, isBeingPicked) {
+  var td = document.createElement('td');
+  var link = document.createElement('a');
+  link.setAttribute('href', '#');
+  link.innerHTML = team.city + '<br>' + team.name;
+  link.onclick = onTeamClick(team, gameIndex, isBeingPicked);
+  td.appendChild(link);
+  return td;
+}
+
+function onTeamClick(team, gameIndex, isBeingPicked) {
+  var picks = document.getElementById('picks');
+  return function() {
+    var game = document.getElementById('game' + gameIndex);
+    if (isBeingPicked) {
+      game.style.display = 'none';
+      picks.appendChild(teamRow(team, gameIndex));
+    }
+    return false;
+  };
 }
 
 window.onload = function() {
   var weekSelect = document.getElementById('week');
-  for (var index in WEEKS) {
-    var week = WEEKS[index];
+  for (var index in DATA.weeks) {
+    var week = DATA.weeks[index];
     var option = document.createElement('option');
-    option.setAttribute('value', week);
-    option.innerHTML = week;
+    option.setAttribute('value', index);
+    option.innerHTML = 'Week ' + week.week_num;
     weekSelect.appendChild(option);
   }
   updateCurrentWeek();
