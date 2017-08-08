@@ -1,21 +1,22 @@
 <html>
   <body>
-    <select id="week" onchange="updateCurrentWeek()">
-    </select>
+    <select id="week" onchange="updateCurrentWeekAndPlayer()"></select>
+    <select id="player" onchange="updateCurrentWeekAndPlayer()"></select>
     <table>
       <tr>
         <td valign="top">
-          <table id="schedule" cellpadding="0" cellspacing="0"></table>
+          <table id="schedule" cellpadding="5" cellspacing="0"></table>
         </td>
-        <td width="100">&nbsp;</td>
+        <td width="100"></td>
         <td valign="top">
-          <table id="picks" cellpadding="0" cellspacing="0"></table>
+          <table id="picks" cellpadding="5" cellspacing="0"></table>
         </td>
       </tr>
     </table>
 <script>
 
 var DATA = {
+  "players": ["Al &amp; Bob", "Ali", "B-Mo", "BJ", "Cary", "Charlie", "Chris", "Donna W", "Ed S", "Eric S", "George F", "Gordy", "JP", "Jason", "Jay", "Jim T", "Joe P.", "John M", "John V.", "Laird", "Len", "Linda Mc", "M-J", "MGPC", "Matt", "Mike K", "Mike L", "Mike W.", "Miro", "Nick", "P&amp;G", "Paul", "Peter", "Ray/Chris", "Rich K", "Rick", "Ryan N", "Ryan S.", "Sean", "Sharon", "Tom", "Woody"],
   "teams": {
     "Cardinals": {
       "logo": "5Mh3xcc8uAsxAi3WZvfEyQ",
@@ -230,7 +231,7 @@ var DATA = {
 
 var STATE = {};
 
-function updateCurrentWeek() {
+function updateCurrentWeekAndPlayer() {
   var week = DATA.weeks[document.getElementById('week').value];
   var schedule = document.getElementById('schedule');
   STATE.nextPickValue = 16;
@@ -273,7 +274,7 @@ function teamImageCell(team, gameIndex, isBeingPicked) {
   var td = document.createElement('td');
   var link = document.createElement('a');
   link.setAttribute('href', '#');
-  link.innerHTML = '<img src="https://ssl.gstatic.com/onebox/media/sports/logos/' + team.logo + '_96x72.png">';
+  link.innerHTML = '<img height="36" src="https://ssl.gstatic.com/onebox/media/sports/logos/' + team.logo + '_96x72.png">';
   link.onclick = onTeamClick(team, gameIndex, isBeingPicked);
   td.appendChild(link);
   return td;
@@ -310,7 +311,15 @@ window.onload = function() {
     option.innerHTML = 'Week ' + week.week_num;
     weekSelect.appendChild(option);
   }
-  updateCurrentWeek();
+  var playerSelect = document.getElementById('player');
+  for (var index in DATA.players) {
+    var player = DATA.players[index];
+    var option = document.createElement('option');
+    option.setAttribute('value', player);
+    option.innerHTML = player;
+    playerSelect.appendChild(option);
+  }
+  updateCurrentWeekAndPlayer();
 };
 
 </script>
