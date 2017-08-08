@@ -1,10 +1,11 @@
+import os
+
 CUR_WEEK = 'Week1'  # current week of schedule
 
-PATTERNS_PATH = '/Users/jimtamer/Modules/Football/patterns.txt'
+PATH = '/Users/jimtamer/Modules/Football'
+#PATH = '/Users/tardigcode/code/Football-Pool'
 
-PLAYERS_PATH = '/Users/jimtamer/Modules/Football/players.txt'
-
-SCHED_PATH = '/Users/jimtamer/Modules/Football/schedule.txt'
-
-PKL_PATH = '/Users/jimtamer/Modules/Football/picks.pickle'
-
+PATTERNS_PATH = os.path.join(PATH, 'patterns.txt')
+PLAYERS_PATH = os.path.join(PATH, 'players.txt')
+SCHED_PATH = os.path.join(PATH, 'Schedule.txt')
+PKL_PATH = os.path.join(PATH, 'picks.pickle')

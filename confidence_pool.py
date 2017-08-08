@@ -63,18 +63,27 @@ def get_schedule(week=WEEK, schedule_file=cp_init.SCHED_PATH):
 			schedule = [str(schedule[i][0]) + ' ' + str(schedule[i][1]) for i in range(l)]
 			return schedule
 
-cur_week_sched = get_schedule()			
+cur_week_sched = get_schedule()
 cur_week_games = len(cur_week_sched)
 
+def create_player_picks(player, week, picks):
+  return {
+		'week': week,
+		'player': player,
+		'picks': picks
+	}
+
 def init_player_picks(player, week=WEEK):
-	""" returns a blank picks list for a single player for a single week """
-	game_count = len(get_schedule(week))
-	player_picks = [([week] + [player])] + ['' for i in range(game_count)]
-	return player_picks
+  """ returns a blank picks list for a single player for a single week """
+  game_count = len(get_schedule(week))
+  picks = ['' for i in range(game_count)]
+  player_picks = create_player_picks(player, week, picks)
+  return player_picks
 	
 def init_picks():
 	""" results in the entire season getting initialized """
-	return [init_player_picks(player, week) for week in weeks for player in fetch_players()]
+	return {(player, week): init_player_picks(player, week)
+			for week in weeks for player in fetch_players()}
 
 def dump_picks(picks, path=cp_init.PKL_PATH):
 	""" Serialize the picks object to the picks pickle file. 
@@ -93,17 +102,13 @@ def get_picks(player, path=cp_init.PKL_PATH, week=WEEK):
 	""" Gets a single player's picks for a given week. 
 	    path is the absolute path to the pickle file """
 	picks = load_picks(path)  # ordered by week then by player, wk1 plr1, wk1 plr2,..., wk17 plr42
-	w_indx = weeks.index(week)
-	p_indx = players.index(player)
-	return picks[(w_indx*len(players)) + p_indx]
+	return picks[(player, week)]
 	
 def save_picks(player_picks, path=cp_init.PKL_PATH):
 	""" Saves a single player's picks for a given week. 
 	    path is the absolute path to the pickle file """
 	picks = load_picks(path) 
-	w_indx = weeks.index(player_picks[0][0])
-	p_indx = players.index(player_picks[0][1])
-	picks[(w_indx*len(players)) + p_indx] = player_picks
+	picks[(player_picks['player'], player_picks['week'])] = player_picks
 	dump_picks(picks, path)
 	
 def gen_random_results(week=WEEK):
@@ -126,7 +131,7 @@ def load_random_players_picks(week=WEEK):
 	for player in players:
 		picks = [random.choice(list(s[i].split())) for i in range(len(s))]
 		random.shuffle(picks)
-		picks = [[week,player]] + picks
+		picks = create_player_picks(player, week, picks)
 		save_picks(picks, cp_init.PKL_PATH)		
 
 def load_random_player_picks(player, week=WEEK):
