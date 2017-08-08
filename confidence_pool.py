@@ -163,22 +163,10 @@ def get_sorted_scores(week=WEEK):
 	scores = sorted([(player,get_score(player, week)) for player in players], key=lambda x: x[1], reverse=True)
 	return scores
 
-def write_picks_file(picks):
-	""" Create a file suitable for importing a week's worth of picks to Excel """
-	with open('picks.txt', mode='w', encoding='utf-8') as picks_file:
-		line = ''
-		# Write player names across 1st line
-		for i in range(len(picks)):
-			line += str(picks[i][0][1]) + '\t' 	
-		line += '\n'
-		picks_file.write(line)
-		line = ''
-		# for each [pick] in [picks], get the jth item and append it to the line
-		l = len(picks[0])  # each [pick] in [picks] is the same length
-		for j in range(1,l):
-			for i in range(len(picks)):  # 0, 41
-				line += str(picks[i][j]) + '\t'
-			line += '\n'
-			picks_file.write(line)
-			line = ''
-		
+def write_picks_file(picks, week=WEEK):
+  """ Create a file suitable for importing a week's worth of picks to Excel """
+  transposed = [[player] + value['picks']
+      for (player, p_week), value in picks.items() if p_week == week]
+  with open('picks.txt', mode='w', encoding='utf-8') as picks_file:
+    for row in zip(*transposed):
+      picks_file.write('\t'.join(row) + '\n')
