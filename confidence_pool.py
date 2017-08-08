@@ -134,17 +134,6 @@ def load_random_players_picks(week=WEEK):
 		picks = create_player_picks(player, week, picks)
 		save_picks(picks, cp_init.PKL_PATH)		
 
-def load_random_player_picks(player, week=WEEK):
-	""" Saves random picks for one player for a given week.
-		Used internally for testing and development """
-	if week != WEEK:
-		s = get_schedule(week) 
-	else: s = cur_week_sched
-	picks = [random.choice(list(s[i].split())) for i in range(len(s))]
-	random.shuffle(picks)
-	picks = [[week,player]] + picks
-	save_picks(picks, cp_init.PKL_PATH)		
-
 def get_score(player, week=WEEK):
 	score = 0
 	if week != WEEK:
