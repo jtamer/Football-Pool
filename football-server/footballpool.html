@@ -20,7 +20,19 @@
 <script src="schedule.js"></script>
 <script>
 
-var STATE = {};
+var STATE = {
+  "picks": {}
+};
+
+function getCurrentWeek() {
+  return 'Week ' + DATA.weeks[document.getElementById('week').value].week_num;
+}
+
+function playerWeekKey() {
+  var player = document.getElementById('player').value;
+  var week = getCurrentWeek();
+  return JSON.stringify([player, week]);
+}
 
 function updateCurrentWeekAndPlayer() {
   var week = DATA.weeks[document.getElementById('week').value];
@@ -88,6 +100,14 @@ function onTeamClick(team, gameIndex, isBeingPicked) {
     if (isBeingPicked) {
       game.style.display = 'none';
       picks.appendChild(teamRow(team, gameIndex));
+      STATE.picks[playerWeekKey()] = STATE.picks[playerWeekKey()] || {
+        "player": document.getElementById('player').value,
+        "week": getCurrentWeek(),
+        "picks": []
+      };
+      var player_picks = STATE.picks[playerWeekKey()];
+      player_picks.picks.push(team.name);
+      console.log(JSON.stringify(STATE.picks));
     }
     return false;
   };
