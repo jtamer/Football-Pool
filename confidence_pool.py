@@ -1,4 +1,3 @@
-# sys.path.insert(0,'/Users/jimtamer/Modules/Football')
 
 import re
 import pickle
@@ -155,7 +154,7 @@ def get_sorted_scores(week=WEEK):
 def write_picks_file(picks, week=WEEK):
   """ Create a file suitable for importing a week's worth of picks to Excel """
   transposed = [[player] + value['picks']
-      for (player, p_week), value in picks.items() if p_week == week]
+      for (player, p_week), value in sorted(picks.items()) if p_week == week]
   with open('picks.txt', mode='w', encoding='utf-8') as picks_file:
     for row in zip(*transposed):
       picks_file.write('\t'.join(row) + '\n')
