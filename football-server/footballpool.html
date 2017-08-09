@@ -1,22 +1,21 @@
 <html>
   <body>
-    <select id="week" onchange="updateCurrentWeekAndPlayer()"></select>
-    <select id="player" onchange="updateCurrentWeekAndPlayer()"></select>
     <form method="GET" action='picks.json' >
+      <select id="week" onchange="updateCurrentWeekAndPlayer()"></select>
+      <select id="player" onchange="updateCurrentWeekAndPlayer()"></select>
       <input type='submit' />
-
-    </form>
       <table>
-      <tr>
-        <td valign="top">
-          <table id="schedule" cellpadding="5" cellspacing="0"></table>
-        </td>
-        <td width="100"></td>
-        <td valign="top">
-          <table id="picks" cellpadding="5" cellspacing="0"></table>
-        </td>
-      </tr>
-    </table>
+        <tr>
+          <td valign="top">
+            <table id="schedule" cellpadding="5" cellspacing="0"></table>
+          </td>
+          <td width="100"></td>
+          <td valign="top">
+            <table id="picks" cellpadding="5" cellspacing="0"></table>
+          </td>
+        </tr>
+      </table>
+    </form>
 <script src="schedule.js"></script>
 <script>
 
