@@ -1,0 +1,5 @@
+To start the local web server:
+from jimtamer folder...
+
+macbook-pro:~ jimtamer$ cd Documents/GitHub/Football-Pool/football-server
+macbook-pro:football-server jimtamer$ dev_appserver.py $PWD
