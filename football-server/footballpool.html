@@ -1,9 +1,10 @@
 <html>
   <body>
-    <form method="GET" action='picks.json' >
+    <form method="POST" action='picks.json' >
       <select id="week" onchange="updateCurrentWeekAndPlayer()"></select>
       <select id="player" onchange="updateCurrentWeekAndPlayer()"></select>
       <input type='submit' />
+      <input type='hidden' name='hiddenpicks' id='hiddenpicks' >
       <table>
         <tr>
           <td valign="top">
@@ -107,6 +108,7 @@ function onTeamClick(team, gameIndex, isBeingPicked) {
       var player_picks = STATE.picks[playerWeekKey()];
       player_picks.picks.push(team.name);
       console.log(JSON.stringify(STATE.picks));
+      document.getElementById('hiddenpicks').value = JSON.stringify(STATE.picks)
     }
     return false;
   };

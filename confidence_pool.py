@@ -73,7 +73,7 @@ def create_player_picks(player, week, picks):
 	}
 
 def player_week_key(player, week):
-  return JSON.dumps([player, week])
+  return JSON.dumps([player, week], separators=',:')
 
 def init_player_picks(player, week=WEEK):
   """ returns a blank picks list for a single player for a single week """

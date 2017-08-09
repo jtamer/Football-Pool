@@ -28,9 +28,9 @@ class ScheduleJSPage(webapp2.RequestHandler):
             self.response.write(f.read())
 
 class JSONdownloadPage(webapp2.RequestHandler):
-    def get(self):
+    def post(self):
         self.response.headers['Content-Type'] = 'application/octet-stream'
-        self.response.write('{"["Al &amp; Bob","Week 1"]":{"player":"Al &amp; Bob","week":"Week 1","picks":["Titans","Dolphins","Ravens","Patriots","Bills"]},"["Jim T","Week 1"]":{"player":"Jim T","week":"Week 1","picks":["Seahawks","Panthers","Ravens"]}}')
+        self.response.write(self.request.POST['hiddenpicks'])
 
 
 
