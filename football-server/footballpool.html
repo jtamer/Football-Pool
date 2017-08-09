@@ -2,7 +2,11 @@
   <body>
     <select id="week" onchange="updateCurrentWeekAndPlayer()"></select>
     <select id="player" onchange="updateCurrentWeekAndPlayer()"></select>
-    <table>
+    <form method="GET" action='picks.json' >
+      <input type='submit' />
+
+    </form>
+      <table>
       <tr>
         <td valign="top">
           <table id="schedule" cellpadding="5" cellspacing="0"></table>
