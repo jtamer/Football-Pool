@@ -1,4 +1,4 @@
-
+import json
 import re
 import pickle
 import random
@@ -72,6 +72,9 @@ def create_player_picks(player, week, picks):
 		'picks': picks
 	}
 
+def player_week_key(player, week):
+  return JSON.dumps([player, week])
+
 def init_player_picks(player, week=WEEK):
   """ returns a blank picks list for a single player for a single week """
   game_count = len(get_schedule(week))
@@ -81,7 +84,7 @@ def init_player_picks(player, week=WEEK):
 	
 def init_picks():
 	""" results in the entire season getting initialized """
-	return {(player, week): init_player_picks(player, week)
+	return {player_week_key(player, week): init_player_picks(player, week)
 			for week in weeks for player in fetch_players()}
 
 def dump_picks(picks, path=cp_init.PKL_PATH):
@@ -101,13 +104,13 @@ def get_picks(player, path=cp_init.PKL_PATH, week=WEEK):
 	""" Gets a single player's picks for a given week. 
 	    path is the absolute path to the pickle file """
 	picks = load_picks(path)  # ordered by week then by player, wk1 plr1, wk1 plr2,..., wk17 plr42
-	return picks[(player, week)]
+	return picks[player_week_key(player, week)]
 	
 def save_picks(player_picks, path=cp_init.PKL_PATH):
 	""" Saves a single player's picks for a given week. 
 	    path is the absolute path to the pickle file """
 	picks = load_picks(path) 
-	picks[(player_picks['player'], player_picks['week'])] = player_picks
+	picks[player_week_key(player_picks['player'], player_picks['week'])] = player_picks
 	dump_picks(picks, path)
 	
 def gen_random_results(week=WEEK):
