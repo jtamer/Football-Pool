@@ -25,7 +25,7 @@ MAX = int(len({patterns[i][1] for i in range(len(patterns))}) / 2) # max score f
 players = []
 with open(cp_init.PLAYERS_PATH, encoding='utf-8') as f:
 	players = f.readlines()		
-	players = [line.strip() for line in players]
+	players = sorted(line.strip() for line in players)
 
 def get_team(line):
 	""" Look for a match of pattern from the (patterns, team) tuple to the line arg. 
@@ -142,7 +142,7 @@ def get_score(player, week=WEEK):
 	#results = gen_random_results(week) # for testing and dev. replace with actual game results
 	picks = get_picks(player, cp_init.PKL_PATH, week)
 	for i in range(len(weights)): 
-		if picks[i+1] in results:
+		if picks['picks'][i] in results:
 			score += weights[i]
 	return score
 
