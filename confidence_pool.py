@@ -1,6 +1,5 @@
 import json
 import re
-import pickle
 import random
 import cp_init
 
@@ -73,7 +72,7 @@ def create_player_picks(player, week, picks):
 	}
 
 def player_week_key(player, week):
-  return JSON.dumps([player, week], separators=',:')
+  return json.dumps([player, week], separators=',:')
 
 def init_player_picks(player, week=WEEK):
   """ returns a blank picks list for a single player for a single week """
@@ -87,28 +86,28 @@ def init_picks():
 	return {player_week_key(player, week): init_player_picks(player, week)
 			for week in weeks for player in fetch_players()}
 
-def dump_picks(picks, path=cp_init.PKL_PATH):
-	""" Serialize the picks object to the picks pickle file. 
-	    path is the absolute path to the pickle file """
-	with open(path, 'wb') as f:
-		pickle.dump(picks, f)
+def dump_picks(picks, path=cp_init.JSON_PATH):
+	""" Serialize the picks object to the picks json file. 
+	    path is the absolute path to the json file """
+	with open(path, 'w') as f:
+		json.dump(picks, f)
 		
-def load_picks(path=cp_init.PKL_PATH):
-	""" Deserialize the picks from the picks pickle file. 
-	    path is the absolute path to the pickle file """
-	with open(path, 'rb') as f:
-		picks = pickle.load(f)
+def load_picks(path=cp_init.JSON_PATH):
+	""" Deserialize the picks from the picks json file. 
+	    path is the absolute path to the json file """
+	with open(path, 'r') as f:
+		picks = json.load(f)
 		return picks
 		
-def get_picks(player, path=cp_init.PKL_PATH, week=WEEK):
+def get_picks(player, path=cp_init.JSON_PATH, week=WEEK):
 	""" Gets a single player's picks for a given week. 
-	    path is the absolute path to the pickle file """
+	    path is the absolute path to the json file """
 	picks = load_picks(path)  # ordered by week then by player, wk1 plr1, wk1 plr2,..., wk17 plr42
 	return picks[player_week_key(player, week)]
 	
-def save_picks(player_picks, path=cp_init.PKL_PATH):
+def save_picks(player_picks, path=cp_init.JSON_PATH):
 	""" Saves a single player's picks for a given week. 
-	    path is the absolute path to the pickle file """
+	    path is the absolute path to the json file """
 	picks = load_picks(path) 
 	picks[player_week_key(player_picks['player'], player_picks['week'])] = player_picks
 	dump_picks(picks, path)
@@ -134,7 +133,7 @@ def load_random_players_picks(week=WEEK):
 		picks = [random.choice(list(s[i].split())) for i in range(len(s))]
 		random.shuffle(picks)
 		picks = create_player_picks(player, week, picks)
-		save_picks(picks, cp_init.PKL_PATH)		
+		save_picks(picks, cp_init.JSON_PATH)		
 
 def get_score(player, week=WEEK):
 	score = 0
@@ -143,7 +142,7 @@ def get_score(player, week=WEEK):
 	else: s = cur_week_sched
 	weights = [i for i in range(MAX,MAX-len(s),-1)]
 	#results = gen_random_results(week) # for testing and dev. replace with actual game results
-	picks = get_picks(player, cp_init.PKL_PATH, week)
+	picks = get_picks(player, cp_init.JSON_PATH, week)
 	for i in range(len(weights)): 
 		if picks['picks'][i] in results:
 			score += weights[i]
