@@ -27,6 +27,13 @@ class ScheduleJSPage(webapp2.RequestHandler):
         with open('schedule.js') as f:
             self.response.write(f.read())
 
+class PicksJSPage(webapp2.RequestHandler):
+    def get(self):
+        self.response.headers['Content-Type'] = 'text/html'
+        with open('picks.json') as f:
+            self.response.write(
+                'var STATE = {"picks": ' + f.read() + '};\n')
+
 class JSONdownloadPage(webapp2.RequestHandler):
     def post(self):
         self.response.headers['Content-Type'] = 'application/octet-stream'
@@ -38,5 +45,6 @@ app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/footballpool.html', MainPage),
     ('/schedule.js', ScheduleJSPage),
+    ('/picks.js', PicksJSPage),
     ('/picks.json', JSONdownloadPage),
 ], debug=True)
