@@ -41,7 +41,7 @@ function getGameIndex(teamName) {
       return gameIndex;
     }
   }
-  throw new Error("cannot find team " + teamName + " in schedule");
+  return -1;
 }
 
 function updateCurrentWeekAndPlayer() {
@@ -92,46 +92,74 @@ function teamRow(team, gameIndex) {
 
 function teamImageCell(team, gameIndex, isBeingPicked) {
   var td = document.createElement('td');
-  var link = document.createElement('a');
-  link.setAttribute('href', '#');
-  link.innerHTML = '<img height="36" src="https://ssl.gstatic.com/onebox/media/sports/logos/' + team.logo + '_96x72.png">';
-  link.onclick = onTeamClick(team, gameIndex, isBeingPicked);
-  td.appendChild(link);
+  if (team) {
+    var link = document.createElement('a');
+    link.setAttribute('href', '#');
+    link.innerHTML = '<img height="36" src="https://ssl.gstatic.com/onebox/media/sports/logos/' + team.logo + '_96x72.png">';
+    link.onclick = onTeamClick(team, gameIndex, isBeingPicked);
+    td.appendChild(link);
+  }
   return td;
 }
 
 function teamNameCell(team, gameIndex, isBeingPicked) {
   var td = document.createElement('td');
-  var link = document.createElement('a');
-  link.setAttribute('href', '#');
-  link.innerHTML = team.city + '<br>' + team.name;
-  link.onclick = onTeamClick(team, gameIndex, isBeingPicked);
-  td.appendChild(link);
+  if (team) {
+    var link = document.createElement('a');
+    link.setAttribute('href', '#');
+    link.innerHTML = team.city + '<br>' + team.name;
+    link.onclick = onTeamClick(team, gameIndex, isBeingPicked);
+    td.appendChild(link);
+  }
   return td;
 }
 
 function onTeamClick(team, gameIndex, isBeingPicked) {
   return function() {
+    STATE.picks[playerWeekKey()] = STATE.picks[playerWeekKey()] || {
+      "player": document.getElementById('player').value,
+      "week": getCurrentWeek(),
+      "picks": []
+    };
+    var playerPicks = STATE.picks[playerWeekKey()];
     if (isBeingPicked) {
-      moveToPicksTable(gameIndex, team);
-      STATE.picks[playerWeekKey()] = STATE.picks[playerWeekKey()] || {
-        "player": document.getElementById('player').value,
-        "week": getCurrentWeek(),
-        "picks": []
-      };
-      var player_picks = STATE.picks[playerWeekKey()];
-      player_picks.picks.push(team.name);
-      console.log(JSON.stringify(STATE.picks));
-      document.getElementById('hiddenpicks').value = JSON.stringify(STATE.picks)
+      var isHoleFilled = false;
+      for (var pickIndex in playerPicks.picks) {
+        if (!playerPicks.picks[pickIndex]) {
+          isHoleFilled = true;
+          playerPicks.picks[pickIndex] = team.name;
+          break;
+        }
+      }
+      if (isHoleFilled) {
+        updateCurrentWeekAndPlayer();
+      } else {
+        playerPicks.picks.push(team.name);
+        moveToPicksTable(gameIndex, team);
+      }
+      var jsonString = JSON.stringify(STATE.picks);
+      console.log(jsonString);
+      document.getElementById('hiddenpicks').value = jsonString;
+    } else {
+      for (var pickIndex in playerPicks.picks) {
+        var teamName = playerPicks.picks[pickIndex];
+        if (teamName === team.name) {
+          playerPicks.picks.splice(pickIndex, 1, '');
+          updateCurrentWeekAndPlayer();
+          break;
+        }
+      }
     }
     return false;
   };
 }
 
 function moveToPicksTable(gameIndex, team) {
+  if (gameIndex >= 0) {
+    var game = document.getElementById('game' + gameIndex);
+    game.style.display = 'none';
+  }
   var picks = document.getElementById('picks');
-  var game = document.getElementById('game' + gameIndex);
-  game.style.display = 'none';
   picks.appendChild(teamRow(team, gameIndex));
 }
 
