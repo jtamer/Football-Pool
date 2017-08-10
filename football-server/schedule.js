@@ -211,7 +211,6 @@ var DATA = {
       "start": "2017-09-07",
       "end": "2017-09-11",
       "games": [
-        ["Chiefs", "Patriots"],
         ["Jets", "Bills"],
         ["Jaguars", "Texans"],
         ["Steelers", "Browns"],
@@ -234,7 +233,6 @@ var DATA = {
       "start": "2017-09-14",
       "end": "2017-09-18",
       "games": [
-        ["Texans", "Bengals"],
         ["Bills", "Panthers"],
         ["Bears", "Buccaneers"],
         ["Vikings", "Steelers"],
@@ -257,7 +255,6 @@ var DATA = {
       "start": "2017-09-21",
       "end": "2017-09-25",
       "games": [
-        ["Rams", "49ers"],
         ["Ravens", "Jaguars"],
         ["Broncos", "Bills"],
         ["Steelers", "Bears"],
@@ -280,7 +277,6 @@ var DATA = {
       "start": "2017-09-28",
       "end": "2017-10-02",
       "games": [
-        ["Bears", "Packers"],
         ["Saints", "Dolphins"],
         ["Panthers", "Patriots"],
         ["Jaguars", "Jets"],
@@ -303,7 +299,6 @@ var DATA = {
       "start": "2017-10-05",
       "end": "2017-10-09",
       "games": [
-        ["Patriots", "Buccaneers"],
         ["49ers", "Colts"],
         ["Jets", "Browns"],
         ["Jaguars", "Steelers"],
@@ -324,7 +319,6 @@ var DATA = {
       "start": "2017-10-12",
       "end": "2017-10-16",
       "games": [
-        ["Eagles", "Panthers"],
         ["Bears", "Ravens"],
         ["Packers", "Vikings"],
         ["49ers", "Redskins"],
@@ -345,7 +339,6 @@ var DATA = {
       "start": "2017-10-19",
       "end": "2017-10-23",
       "games": [
-        ["Chiefs", "Raiders"],
         ["Bengals", "Steelers"],
         ["Ravens", "Vikings"],
         ["Saints", "Packers"],
@@ -367,7 +360,6 @@ var DATA = {
       "start": "2017-10-26",
       "end": "2017-10-30",
       "games": [
-        ["Dolphins", "Ravens"],
         ["Vikings", "Browns"],
         ["Chargers", "Patriots"],
         ["Bears", "Saints"],
@@ -387,7 +379,6 @@ var DATA = {
       "start": "2017-11-02",
       "end": "2017-11-06",
       "games": [
-        ["Bills", "Jets"],
         ["Buccaneers", "Saints"],
         ["Falcons", "Panthers"],
         ["Rams", "Giants"],
@@ -407,7 +398,6 @@ var DATA = {
       "start": "2017-11-09",
       "end": "2017-11-13",
       "games": [
-        ["Seahawks", "Cardinals"],
         ["Jets", "Buccaneers"],
         ["Saints", "Bills"],
         ["Browns", "Lions"],
@@ -428,7 +418,6 @@ var DATA = {
       "start": "2017-11-16",
       "end": "2017-11-20",
       "games": [
-        ["Titans", "Steelers"],
         ["Jaguars", "Browns"],
         ["Ravens", "Packers"],
         ["Lions", "Bears"],
@@ -471,7 +460,6 @@ var DATA = {
       "start": "2017-11-30",
       "end": "2017-12-04",
       "games": [
-        ["Redskins", "Cowboys"],
         ["Chiefs", "Jets"],
         ["Patriots", "Bills"],
         ["Broncos", "Dolphins"],
@@ -494,7 +482,6 @@ var DATA = {
       "start": "2017-12-07",
       "end": "2017-12-11",
       "games": [
-        ["Saints", "Falcons"],
         ["Seahawks", "Jaguars"],
         ["Packers", "Browns"],
         ["Lions", "Buccaneers"],
@@ -517,7 +504,6 @@ var DATA = {
       "start": "2017-12-14",
       "end": "2017-12-18",
       "games": [
-        ["Broncos", "Colts"],
         ["Bears", "Lions"],
         ["Chargers", "Chiefs"],
         ["Eagles", "Giants"],
