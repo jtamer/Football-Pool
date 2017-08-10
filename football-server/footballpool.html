@@ -137,9 +137,6 @@ function onTeamClick(team, gameIndex, isBeingPicked) {
         playerPicks.picks.push(team.name);
         moveToPicksTable(gameIndex, team);
       }
-      var jsonString = JSON.stringify(STATE.picks);
-      console.log(jsonString);
-      document.getElementById('hiddenpicks').value = jsonString;
     } else {
       for (var pickIndex in playerPicks.picks) {
         var teamName = playerPicks.picks[pickIndex];
@@ -150,6 +147,8 @@ function onTeamClick(team, gameIndex, isBeingPicked) {
         }
       }
     }
+    var jsonString = JSON.stringify(STATE.picks);
+    document.getElementById('hiddenpicks').value = jsonString;
     return false;
   };
 }
