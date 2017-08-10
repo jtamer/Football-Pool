@@ -34,14 +34,34 @@ function playerWeekKey() {
   return JSON.stringify([player, week]);
 }
 
+function getGameIndex(teamName) {
+  var week = DATA.weeks[document.getElementById('week').value];
+  for (var gameIndex in week.games) {
+    var game = week.games[gameIndex];
+    var awayTeam = DATA.teams[game[0]];
+    var homeTeam = DATA.teams[game[1]];
+    if (awayTeam.name === teamName || homeTeam.name === teamName) {
+      return gameIndex;
+    }
+  }
+  throw new Error("cannot find team " + teamName + " in schedule");
+}
+
 function updateCurrentWeekAndPlayer() {
   var week = DATA.weeks[document.getElementById('week').value];
   var schedule = document.getElementById('schedule');
-  STATE.nextPickValue = 16;
-  document.getElementById('picks').innerHTML = '';
   schedule.innerHTML = '';
   for (var gameIndex in week.games) {
     schedule.appendChild(gameRow(gameIndex));
+  }
+  STATE.nextPickValue = 16;
+  var picks = document.getElementById('picks');
+  picks.innerHTML = '';
+  var playerPicks = STATE.picks[playerWeekKey()] || {"picks": []};
+  for (var pickIndex in playerPicks.picks) {
+    var teamName = playerPicks.picks[pickIndex];
+    var gameIndex = getGameIndex(teamName);
+    onTeamClick(DATA.teams[teamName], gameIndex, true)();
   }
 }
 
