@@ -24,8 +24,9 @@ class MainPage(webapp2.RequestHandler):
 class ScheduleJSPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
-        with open('schedule.js') as f:
-            self.response.write(f.read())
+        with open('schedule.json') as f:
+            self.response.write(
+                'var DATA = ' + f.read() + ';\n')
 
 class PicksJSPage(webapp2.RequestHandler):
     def get(self):

@@ -1,17 +1,14 @@
 import json
-import re
 import random
+import re
+
 import cp_init
 
-def get_weeks():
-	with open(cp_init.SCHED_PATH, encoding='utf-8') as f:
-		s = f.readlines()
-		s = [x.strip() for x in s]
-		return len([x for x in s if 'Week' in x])
 
-WEEKS = get_weeks()
-weeks = ['Week'+str(i+1) for i in range(WEEKS)] 
-WEEK = cp_init.CUR_WEEK  
+SCHEDULE = cp_init.SCHEDULE
+
+weeks = [week['name'] for week in SCHEDULE['weeks'].values()]
+WEEK = cp_init.CUR_WEEK
 
 patterns = []
 with open(cp_init.PATTERNS_PATH, encoding='utf-8') as f:
@@ -20,11 +17,15 @@ with open(cp_init.PATTERNS_PATH, encoding='utf-8') as f:
 	patterns = tuple(eval(line) for line in patterns) 
 	
 MAX = int(len({patterns[i][1] for i in range(len(patterns))}) / 2) # max score for the top pick  e.g. 16. 
-	
-players = []
-with open(cp_init.PLAYERS_PATH, encoding='utf-8') as f:
-	players = f.readlines()		
-	players = sorted(line.strip() for line in players)
+
+def load_picks(path=cp_init.JSON_PATH):
+        """ Deserialize the picks from the picks json file.
+            path is the absolute path to the json file """
+        with open(path, 'r') as f:
+                return json.load(f)
+
+PICKS = load_picks()
+players = SCHEDULE['players']
 
 def get_team(line):
 	""" Look for a match of pattern from the (patterns, team) tuple to the line arg. 
@@ -33,42 +34,25 @@ def get_team(line):
 		if re.search(pattern, line.upper()):
 			return team
 
-def fetch_players():
-	return players
-	
 def get_players(players_file):
 	players = []
 	with open(players_file, encoding='utf-8') as f:
 		players = f.readlines()		
 	players = [line.strip() for line in players]
 	return players
-	 
-def get_schedule(week=WEEK, schedule_file=cp_init.SCHED_PATH):
+
+def get_schedule(week=WEEK):
 		""" Returns a list of the given week's schedule ['Away Home', 'Away Home',...] """
-		schedule = []
-		week_num = int(week[4:])
-		with open(schedule_file, encoding='utf-8') as f:
-			schedule = f.readlines()
-			schedule = [x.strip() for x in schedule]
-			i = schedule.index(week)
-			schedule = schedule[i+1:]
-			if "Week" in str(schedule):
-				j = schedule.index("Week"+str(week_num+1))
-				schedule = schedule[:j]
-				schedule.remove('')
-			schedule = [x.split() for x in schedule]
-			l = len(schedule)
-			schedule = [str(schedule[i][0]) + ' ' + str(schedule[i][1]) for i in range(l)]
-			return schedule
+		return [away + ' ' + home for away, home in SCHEDULE['weeks'][week]['games']]
 
 cur_week_sched = get_schedule()
 cur_week_games = len(cur_week_sched)
 
-def create_player_picks(player, week, picks):
+def create_player_picks(player, week, player_picks):
   return {
 		'week': week,
 		'player': player,
-		'picks': picks
+		'picks': player_picks
 	}
 
 def player_week_key(player, week):
@@ -77,38 +61,29 @@ def player_week_key(player, week):
 def init_player_picks(player, week=WEEK):
   """ returns a blank picks list for a single player for a single week """
   game_count = len(get_schedule(week))
-  picks = ['' for i in range(game_count)]
-  player_picks = create_player_picks(player, week, picks)
+  player_picks = ['' for i in range(game_count)]
+  player_picks = create_player_picks(player, week, player_picks)
   return player_picks
 	
 def init_picks():
 	""" results in the entire season getting initialized """
 	return {player_week_key(player, week): init_player_picks(player, week)
-			for week in weeks for player in fetch_players()}
+			for week in weeks for player in players}
 
-def dump_picks(picks, path=cp_init.JSON_PATH):
+def dump_picks(picks=PICKS, path=cp_init.JSON_PATH):
 	""" Serialize the picks object to the picks json file. 
 	    path is the absolute path to the json file """
 	with open(path, 'w') as f:
 		json.dump(picks, f)
-		
-def load_picks(path=cp_init.JSON_PATH):
-	""" Deserialize the picks from the picks json file. 
-	    path is the absolute path to the json file """
-	with open(path, 'r') as f:
-		picks = json.load(f)
-		return picks
-		
-def get_picks(player, path=cp_init.JSON_PATH, week=WEEK):
+
+def get_player_picks(player, path=cp_init.JSON_PATH, picks=PICKS, week=WEEK):
 	""" Gets a single player's picks for a given week. 
 	    path is the absolute path to the json file """
-	picks = load_picks(path)  # ordered by week then by player, wk1 plr1, wk1 plr2,..., wk17 plr42
 	return picks[player_week_key(player, week)]
-	
-def save_picks(player_picks, path=cp_init.JSON_PATH):
+
+def save_player_picks(player_picks, path=cp_init.JSON_PATH, picks=PICKS):
 	""" Saves a single player's picks for a given week. 
 	    path is the absolute path to the json file """
-	picks = load_picks(path) 
 	picks[player_week_key(player_picks['player'], player_picks['week'])] = player_picks
 	dump_picks(picks, path)
 	
@@ -130,10 +105,10 @@ def load_random_players_picks(week=WEEK):
 		s = get_schedule(week) 
 	else: s = cur_week_sched
 	for player in players:
-		picks = [random.choice(list(s[i].split())) for i in range(len(s))]
-		random.shuffle(picks)
-		picks = create_player_picks(player, week, picks)
-		save_picks(picks, cp_init.JSON_PATH)		
+		player_picks = [random.choice(list(s[i].split())) for i in range(len(s))]
+		random.shuffle(player_picks)
+		player_picks = create_player_picks(player, week, player_picks)
+		save_player_picks(player_picks)
 
 def get_score(player, week=WEEK):
 	score = 0
@@ -142,9 +117,9 @@ def get_score(player, week=WEEK):
 	else: s = cur_week_sched
 	weights = [i for i in range(MAX,MAX-len(s),-1)]
 	#results = gen_random_results(week) # for testing and dev. replace with actual game results
-	picks = get_picks(player, cp_init.JSON_PATH, week)
+	player_picks = get_player_picks(player, week=week)
 	for i in range(len(weights)): 
-		if picks['picks'][i] in results:
+		if player_picks['picks'][i] in results:
 			score += weights[i]
 	return score
 
@@ -153,10 +128,10 @@ def get_sorted_scores(week=WEEK):
 	scores = sorted([(player,get_score(player, week)) for player in players], key=lambda x: x[1], reverse=True)
 	return scores
 
-def write_picks_file(picks, week=WEEK):
+def write_picks_file(picks=PICKS, week=WEEK):
   """ Create a file suitable for importing a week's worth of picks to Excel """
-  transposed = [[player] + value['picks']
-      for (player, p_week), value in sorted(picks.items()) if p_week == week]
+  transposed = [[value['player']] + value['picks']
+      for _, value in sorted(picks.items()) if value['week'] == week]
   with open('picks.txt', mode='w', encoding='utf-8') as picks_file:
     for row in zip(*transposed):
       picks_file.write('\t'.join(row) + '\n')
@@ -164,18 +139,4 @@ def write_picks_file(picks, week=WEEK):
 emailToName = {}
 with open(cp_init.XREF_PATH, encoding='utf-8') as f:
 	emailToName = {k:v for line in f for tokens in 
-	[line.strip().split('\t')] for k,v in [tokens]}
-
-def read_picks_from_file():
-	lines = []
-	picks = []
-	for filename in os.listdir(EMAIL_PATH):
-		if '.txt' in filename:
-			with open(filename, encoding='utf-8') as f:
-				lines = f.readlines()
-				filename = filename[:-4]
-				playername = emailToName[filename]
-				picks = [get_team(l) for l in lines]
-				picks = create_player_picks(playername, WEEK, picks)
-				save_picks(picks)
-
+			[line.strip().split('\t', 1)] for k,v in [tokens]}

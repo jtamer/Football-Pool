@@ -21,13 +21,13 @@
 <script src="picks.js"></script>
 <script>
 
-function getCurrentWeek() {
-  return 'Week' + DATA.weeks[document.getElementById('week').value].week_num;
+function getSelectedWeek() {
+  return DATA.weeks[document.getElementById('week').value].name;
 }
 
 function playerWeekKey() {
   var player = document.getElementById('player').value;
-  var week = getCurrentWeek();
+  var week = getSelectedWeek();
   return JSON.stringify([player, week]);
 }
 
@@ -118,7 +118,7 @@ function onTeamClick(team, gameIndex, isBeingPicked) {
   return function() {
     STATE.picks[playerWeekKey()] = STATE.picks[playerWeekKey()] || {
       "player": document.getElementById('player').value,
-      "week": getCurrentWeek(),
+      "week": getSelectedWeek(),
       "picks": []
     };
     var playerPicks = STATE.picks[playerWeekKey()];
@@ -168,7 +168,10 @@ window.onload = function() {
     var week = DATA.weeks[index];
     var option = document.createElement('option');
     option.setAttribute('value', index);
-    option.innerHTML = 'Week' + week.week_num;
+    option.innerHTML = week.name;
+    if (week.name == DATA.current_week) {
+      option.setAttribute('selected', true);
+    }
     weekSelect.appendChild(option);
   }
   var playerSelect = document.getElementById('player');
@@ -176,7 +179,10 @@ window.onload = function() {
     var player = DATA.players[index];
     var option = document.createElement('option');
     option.setAttribute('value', player);
-    option.innerHTML = player;
+    option.appendChild(document.createTextNode(player));
+    if (player == 'Jim T') {
+      option.setAttribute('selected', true);
+    }
     playerSelect.appendChild(option);
   }
   updateCurrentWeekAndPlayer();

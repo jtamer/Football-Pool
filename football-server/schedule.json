@@ -1,6 +1,7 @@
-var DATA = {
+{
+  "current_week": "Week1",
   "players": [
-    "Al &amp; Bob",
+    "Al & Bob",
     "Ali",
     "B-Mo",
     "BJ",
@@ -30,7 +31,7 @@ var DATA = {
     "Mike W.",
     "Miro",
     "Nick",
-    "P&amp;G",
+    "P&G",
     "Paul",
     "Peter",
     "Ray/Chris",
@@ -205,9 +206,9 @@ var DATA = {
       "name": "Redskins"
     }
   },
-  "weeks": [
-    {
-      "week_num": 1,
+  "weeks": {
+    "Week1": {
+      "name": "Week1",
       "start": "2017-09-07",
       "end": "2017-09-11",
       "games": [
@@ -228,8 +229,8 @@ var DATA = {
         ["Chargers", "Broncos"]
       ]
     },
-    {
-      "week_num": 2,
+    "Week2": {
+      "name": "Week2",
       "start": "2017-09-14",
       "end": "2017-09-18",
       "games": [
@@ -250,8 +251,8 @@ var DATA = {
         ["Lions", "Giants"]
       ]
     },
-    {
-      "week_num": 3,
+    "Week3": {
+      "name": "Week3",
       "start": "2017-09-21",
       "end": "2017-09-25",
       "games": [
@@ -272,8 +273,8 @@ var DATA = {
         ["Cowboys", "Cardinals"]
       ]
     },
-    {
-      "week_num": 4,
+    "Week4": {
+      "name": "Week4",
       "start": "2017-09-28",
       "end": "2017-10-02",
       "games": [
@@ -294,8 +295,8 @@ var DATA = {
         ["Redskins", "Chiefs"]
       ]
     },
-    {
-      "week_num": 5,
+    "Week5": {
+      "name": "Week5",
       "start": "2017-10-05",
       "end": "2017-10-09",
       "games": [
@@ -314,8 +315,8 @@ var DATA = {
         ["Vikings", "Bears"]
       ]
     },
-    {
-      "week_num": 6,
+    "Week6": {
+      "name": "Week6",
       "start": "2017-10-12",
       "end": "2017-10-16",
       "games": [
@@ -334,8 +335,8 @@ var DATA = {
         ["Colts", "Titans"]
       ]
     },
-    {
-      "week_num": 7,
+    "Week7": {
+      "name": "Week7",
       "start": "2017-10-19",
       "end": "2017-10-23",
       "games": [
@@ -355,8 +356,8 @@ var DATA = {
         ["Redskins", "Eagles"]
       ]
     },
-    {
-      "week_num": 8,
+    "Week8": {
+      "name": "Week8",
       "start": "2017-10-26",
       "end": "2017-10-30",
       "games": [
@@ -374,8 +375,8 @@ var DATA = {
         ["Broncos", "Chiefs"]
       ]
     },
-    {
-      "week_num": 9,
+    "Week9": {
+      "name": "Week9",
       "start": "2017-11-02",
       "end": "2017-11-06",
       "games": [
@@ -393,8 +394,8 @@ var DATA = {
         ["Lions", "Packers"]
       ]
     },
-    {
-      "week_num": 10,
+    "Week10": {
+      "name": "Week10",
       "start": "2017-11-09",
       "end": "2017-11-13",
       "games": [
@@ -413,8 +414,8 @@ var DATA = {
         ["Dolphins", "Panthers"]
       ]
     },
-    {
-      "week_num": 11,
+    "Week11": {
+      "name": "Week11",
       "start": "2017-11-16",
       "end": "2017-11-20",
       "games": [
@@ -432,8 +433,8 @@ var DATA = {
         ["Falcons", "Seahawks"]
       ]
     },
-    {
-      "week_num": 12,
+    "Week12": {
+      "name": "Week12",
       "start": "2017-11-23",
       "end": "2017-11-27",
       "games": [
@@ -455,8 +456,8 @@ var DATA = {
         ["Texans", "Ravens"]
       ]
     },
-    {
-      "week_num": 13,
+    "Week13": {
+      "name": "Week13",
       "start": "2017-11-30",
       "end": "2017-12-04",
       "games": [
@@ -477,8 +478,8 @@ var DATA = {
         ["Steelers", "Bengals"]
       ]
     },
-    {
-      "week_num": 14,
+    "Week14": {
+      "name": "Week14",
       "start": "2017-12-07",
       "end": "2017-12-11",
       "games": [
@@ -499,8 +500,8 @@ var DATA = {
         ["Patriots", "Dolphins"]
       ]
     },
-    {
-      "week_num": 15,
+    "Week15": {
+      "name": "Week15",
       "start": "2017-12-14",
       "end": "2017-12-18",
       "games": [
@@ -521,8 +522,8 @@ var DATA = {
         ["Falcons", "Buccaneers"]
       ]
     },
-    {
-      "week_num": 16,
+    "Week16": {
+      "name": "Week16",
       "start": "2017-12-21",
       "end": "2017-12-25",
       "games": [
@@ -544,8 +545,8 @@ var DATA = {
         ["Raiders", "Eagles"]
       ]
     },
-    {
-      "week_num": 17,
+    "Week17": {
+      "name": "Week17",
       "start": "2017-12-28",
       "end": "2018-01-01",
       "games": [
@@ -567,5 +568,5 @@ var DATA = {
         ["Chiefs", "Broncos"]
       ]
     }
-  ]
-};
+  }
+}
