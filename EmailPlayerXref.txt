@@ -1,44 +1,42 @@
-albert.jr7443@sbcglobal.net	Al & Bob
+'unknown': BJ
+unknown	JP
+unknown	Jason
+unknown	M-J
+unknown	MGPC
+unknown	Rick
+unknown	Woody
+Miro@giantfinishing.com	Miro
+Psyqchem1@aol.com	Mike W.
 SAFWATHS@aol.com	Ali
-pegmcdona@gmail.com	B-Mo
+albert.jr7443@sbcglobal.net	Al & Bob
+bears25@comcast.net	Chris
+bobfrederick7@comcast.net	Al & Bob
+cbear62@comcast.net	George F
 cgabel@bruckerco.com	Cary
 charlie-e@comcast.net	Charlie
-bears25@comcast.net	Chris
 daddyfreds@yahoo.com	Ray/Chris
-bobfrederick7@comcast.net	Al & Bob
 edward.sobon@att.net	Ed S
 fscofield@comcast.net	Eric S
-cbear62@comcast.net	George F
 gordonkronke@yahoo.com	Gordy
 jim.tamer@gmail.com	Jim T
-	Jason
 joe.ptack@fiserv.com	Joe P.
-venturebus@hotmail.com	John M
-vojtajohn@yahoo.com	John V.
 lairdhere@yahoo.com	Laird
 lcukierski@att.net	Len
 mcgwilinator@aol.com	LindaMac
-petrucci807@gmail.com	Matt
 mike@addisonelectric.com	Mike K
 mikelind54@yahoo.com	Mike L
-Psyqchem1@aol.com	Mike W.
-Miro@giantfinishing.com	Miro
+nedolast26@gmail.com	Ryan N
 nschullo@wecarlson.com	Nick
-pmiczuga@yahoo.com	Paul
+pegmcdona@gmail.com	B-Mo
 pete.cotter5@hotmail.com	Peter
+petrucci807@gmail.com	Matt
 phillip.kronke@kyocera.com	P&G
+pmiczuga@yahoo.com	Paul
 ray.warfield@gmail.com	Ray/Chris
 rkemph@arrowappraisalgroup.com	Rich K
-	Rick
-nedolast26@gmail.com	Ryan N
 ryan.schur@gmail.com	Ryan S.
 sean@addisonelectric.com	Sean
 slubecky@yahoo.com	Sharon
 tomdavidson1@hotmail.com	Tom
-	BJ
-	M-J
-	JP
-	MGPC
-	Woody
-
-
+venturebus@hotmail.com	John M
+vojtajohn@yahoo.com	John V.

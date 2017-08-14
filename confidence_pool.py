@@ -160,3 +160,22 @@ def write_picks_file(picks, week=WEEK):
   with open('picks.txt', mode='w', encoding='utf-8') as picks_file:
     for row in zip(*transposed):
       picks_file.write('\t'.join(row) + '\n')
+
+emailToName = {}
+with open(cp_init.XREF_PATH, encoding='utf-8') as f:
+	emailToName = {k:v for line in f for tokens in 
+	[line.strip().split('\t')] for k,v in [tokens]}
+
+def read_picks_from_file():
+	lines = []
+	picks = []
+	for filename in os.listdir(EMAIL_PATH):
+		if '.txt' in filename:
+			with open(filename, encoding='utf-8') as f:
+				lines = f.readlines()
+				filename = filename[:-4]
+				playername = emailToName[filename]
+				picks = [get_team(l) for l in lines]
+				picks = create_player_picks(playername, WEEK, picks)
+				save_picks(picks)
+
