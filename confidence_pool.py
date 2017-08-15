@@ -16,6 +16,12 @@ with open(cp_init.PATTERNS_PATH, encoding='utf-8') as f:
 	patterns = [line.strip() for line in patterns]	
 	patterns = tuple(eval(line) for line in patterns) 
 	
+patterns_long = []
+with open(cp_init.PATTERNS_LONG_PATH, encoding='utf-8') as f:
+	patterns_long = f.readlines()
+	patterns_long = [line.strip() for line in patterns_long]	
+	patterns_long = tuple(eval(line) for line in patterns_long) 
+
 MAX = int(len({patterns[i][1] for i in range(len(patterns))}) / 2) # max score for the top pick  e.g. 16. 
 
 def load_picks(path=cp_init.JSON_PATH):
@@ -33,6 +39,14 @@ def get_team(line):
 	for pattern, team in patterns:
 		if re.search(pattern, line.upper()):
 			return team
+
+def get_team_long(line):
+	""" Look for a match of pattern from the (patterns, team) tuple to the line arg. 
+	    If a match is found, return the associated team from the patterns tuple """
+	for pattern, team in patterns_long:
+		if re.search(pattern, line.upper()):
+			return team
+
 
 def get_players(players_file):
 	players = []
@@ -152,6 +166,6 @@ def read_picks_from_file():
 				lines = f.readlines()
 				filename = filename[:-4]
 				playername = emailToName[filename]
-				picks = [get_team(l) for l in lines]
+				picks = [get_team_long(l) for l in lines]
 				picks = create_player_picks(playername, WEEK, picks)
 				save_player_picks(picks)

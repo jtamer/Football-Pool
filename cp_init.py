@@ -6,6 +6,7 @@ PATH = '/Users/jimtamer/Documents/GitHub/Football-Pool'
 
 EMAIL_PATH = os.path.join(PATH, 'Emails')
 PATTERNS_PATH = os.path.join(PATH, 'patterns.txt')
+PATTERNS_LONG_PATH = os.path.join(PATH, 'patterns_long.txt')
 JSON_PATH = os.path.join(PATH, 'football-server/picks.json')
 XREF_PATH = os.path.join(PATH, 'EmailPlayerXref.txt')
 
