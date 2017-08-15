@@ -47,7 +47,6 @@ def get_team_long(line):
 		if re.search(pattern, line.upper()):
 			return team
 
-
 def get_players(players_file):
 	players = []
 	with open(players_file, encoding='utf-8') as f:
