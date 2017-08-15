@@ -1,7 +1,7 @@
 import json
 import random
 import re
-
+import os
 import cp_init
 
 
@@ -129,14 +129,29 @@ def get_sorted_scores(week=WEEK):
 	return scores
 
 def write_picks_file(picks=PICKS, week=WEEK):
-  """ Create a file suitable for importing a week's worth of picks to Excel """
-  transposed = [[value['player']] + value['picks']
-      for _, value in sorted(picks.items()) if value['week'] == week]
-  with open('picks.txt', mode='w', encoding='utf-8') as picks_file:
-    for row in zip(*transposed):
-      picks_file.write('\t'.join(row) + '\n')
+	""" Create a file suitable for importing a week's worth of picks to Excel """
+	transposed = [[value['player']] + value['picks'] for _, value in sorted(picks.items()) if value['week'] == week]
+	for i in range(len(players)):
+		for j in range(1,cur_week_games+1):
+			transposed[i][j] = get_team(transposed[i][j])
+	with open('picks.txt', mode='w', encoding='utf-8') as picks_file:
+		for row in zip(*transposed):
+			picks_file.write('\t'.join(row) + '\n')
 
 emailToName = {}
 with open(cp_init.XREF_PATH, encoding='utf-8') as f:
 	emailToName = {k:v for line in f for tokens in 
 			[line.strip().split('\t', 1)] for k,v in [tokens]}
+
+def read_picks_from_file():
+	lines = []
+	picks = []
+	for filename in os.listdir(cp_init.EMAIL_PATH):
+		if '.txt' in filename:
+			with open(os.path.join(cp_init.EMAIL_PATH, filename), encoding='utf-8') as f:
+				lines = f.readlines()
+				filename = filename[:-4]
+				playername = emailToName[filename]
+				picks = [get_team(l) for l in lines]
+				picks = create_player_picks(playername, WEEK, picks)
+				save_player_picks(picks)
