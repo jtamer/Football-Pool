@@ -201,6 +201,6 @@ def read_picks_from_file():
 				filename = filename[:-4]
 				playername = emailToName[filename]
 				picks = [get_team_long(l) for l in lines]
-				picks = check-for_valid(picks)
+				picks = check_for_valid(picks)
 				picks = create_player_picks(playername, WEEK, picks)
 				save_player_picks(picks)
