@@ -156,6 +156,41 @@ with open(cp_init.XREF_PATH, encoding='utf-8') as f:
 	emailToName = {k:v for line in f for tokens in 
 			[line.strip().split('\t', 1)] for k,v in [tokens]}
 
+def in_schedule(team):
+	""" checks if team arg is in the cur week schedule
+	returns team if true else returns ''  """
+	state = False
+	for i in range(cur_week_games):
+		state = state or team in cur_week_sched[i]
+	return state
+
+def picked_count(team, picks):
+	count = 0
+	for i in range(len(picks)):
+		count += team in picks[i]
+	return count
+
+def get_opponent(team):
+	for i in range(cur_week_games):
+		if team in cur_week_sched[i]:
+			away, home = cur_week_sched[i].split()
+			if team == away:
+				return home
+			return away
+
+def played_both_sides(team, picks):
+	t = get_opponent(team)
+	if t in picks:
+		return True
+	return False
+
+def check_for_valid(picks):
+	for i in range(len(picks)):
+		if not in_schedule(picks[i]) or picked_count(picks[i], picks) > 1 \
+		or played_both_sides(picks[i], picks):
+			picks[i] = ''
+	return picks
+
 def read_picks_from_file():
 	lines = []
 	picks = []
@@ -166,5 +201,6 @@ def read_picks_from_file():
 				filename = filename[:-4]
 				playername = emailToName[filename]
 				picks = [get_team_long(l) for l in lines]
+				picks = check-for_valid(picks)
 				picks = create_player_picks(playername, WEEK, picks)
 				save_player_picks(picks)
