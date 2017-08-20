@@ -79,9 +79,9 @@ def init_player_picks(player, week=WEEK):
   return player_picks
 	
 def init_picks():
-	""" results in the entire season getting initialized """
+	""" results in the current week getting initialized """
 	return {player_week_key(player, week): init_player_picks(player, week)
-			for week in weeks for player in players}
+			for week in [WEEK] for player in players}
 
 def dump_picks(picks=PICKS, path=cp_init.JSON_PATH):
 	""" Serialize the picks object to the picks json file. 
