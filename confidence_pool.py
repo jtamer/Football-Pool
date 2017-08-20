@@ -204,3 +204,16 @@ def read_picks_from_file():
 				picks = check_for_valid(picks)
 				picks = create_player_picks(playername, WEEK, picks)
 				save_player_picks(picks)
+
+def all_possible_outcomes(week=WEEK):
+	games = SCHEDULE['weeks'][week]['games']
+	winners = set()
+	def recurse(index=0):
+		if index < len(games):
+			for team in games[index]:
+				winners.add(team)
+				yield from recurse(index + 1)
+				winners.remove(team)
+		else:
+			yield frozenset(winners)
+	yield from recurse()
