@@ -123,7 +123,7 @@ def load_random_players_picks(week=WEEK):
 		player_picks = create_player_picks(player, week, player_picks)
 		save_player_picks(player_picks)
 
-def get_score(player, week=WEEK):
+def get_score(player, results, week=WEEK):
 	score = 0
 	if week != WEEK:
 		s = get_schedule(week) 
@@ -136,9 +136,9 @@ def get_score(player, week=WEEK):
 			score += weights[i]
 	return score
 
-def get_sorted_scores(week=WEEK):
+def get_sorted_scores(results, week=WEEK):
 	""" Returns list of (player, score) tuples sorted in decending order by player's score """
-	scores = sorted([(player,get_score(player, week)) for player in players], key=lambda x: x[1], reverse=True)
+	scores = sorted([(player,get_score(player, results, week)) for player in players], key=lambda x: x[1], reverse=True)
 	return scores
 
 def write_picks_file(picks=PICKS, week=WEEK):
@@ -215,5 +215,17 @@ def all_possible_outcomes(week=WEEK):
 				yield from recurse(index + 1)
 				winners.remove(team)
 		else:
-			yield frozenset(winners)
+			#yield frozenset(winners)
+			yield list(winners)
 	yield from recurse()
+
+def get_winners(player):
+	winners = []
+	apo = all_possible_outcomes()
+	for i in range(2**cur_week_games):
+		results = next(apo)
+		scores = get_sorted_scores(results)
+		player_score = get_score(player, results)
+		if player_score >= scores[1][1]:
+			winners.append(results)
+	return winners
