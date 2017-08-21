@@ -224,8 +224,14 @@ def get_winners(player):
 	apo = all_possible_outcomes()
 	for i in range(2**cur_week_games):
 		results = next(apo)
-		scores = get_sorted_scores(results)
+		#scores = get_sorted_scores(results)
 		player_score = get_score(player, results)
-		if player_score >= scores[1][1]:
+		count = 0
+		for j in range(len(players)):
+			if get_score(players[j], results) > player_score:
+				count += 1
+				if count == 2:
+					break
+		if count < 2:
 			winners.append(results)
 	return winners
