@@ -224,7 +224,6 @@ def get_winners(player):
 	apo = all_possible_outcomes()
 	for i in range(2**cur_week_games):
 		results = next(apo)
-		#scores = get_sorted_scores(results)
 		player_score = get_score(player, results)
 		count = 0
 		for j in range(len(players)):
@@ -233,5 +232,21 @@ def get_winners(player):
 				if count == 2:
 					break
 		if count < 2:
-			winners.append(results)
+			sorted_results = []
+			for k in range(cur_week_games):
+				aw, hm = cur_week_sched[k].split()
+				if aw in results:
+					sorted_results.append(aw)
+				else:
+					sorted_results.append(hm)
+			winners.append(sorted_results)
 	return winners
+
+def write_winners_file(winners):
+	""" Create a text file from the output of the get_winners function - [winners] """
+	for i in range(len(winners)): 
+		for j in range(cur_week_games):
+			winners[i][j] = get_team(winners[i][j])
+	with open('winners.txt', mode='w', encoding='utf-8') as winners_file:
+		for row in winners:
+			winners_file.write('\t'.join(row) + '\n')
