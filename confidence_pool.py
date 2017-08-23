@@ -47,13 +47,6 @@ def get_team_long(line):
 		if re.search(pattern, line.upper()):
 			return team
 
-def get_players(players_file):
-	players = []
-	with open(players_file, encoding='utf-8') as f:
-		players = f.readlines()		
-	players = [line.strip() for line in players]
-	return players
-
 def get_schedule(week=WEEK):
 		""" Returns a list of the given week's schedule ['Away Home', 'Away Home',...] """
 		return [away + ' ' + home for away, home in SCHEDULE['weeks'][week]['games']]
@@ -165,12 +158,15 @@ def in_schedule(team):
 	return state
 
 def picked_count(team, picks):
+	""" returns the number of occurances of the 'team' parameter 
+	that are in the [picks] list """
 	count = 0
 	for i in range(len(picks)):
 		count += team in picks[i]
 	return count
 
 def get_opponent(team):
+	""" returns the opponent of 'team' from the current week schedule """
 	for i in range(cur_week_games):
 		if team in cur_week_sched[i]:
 			away, home = cur_week_sched[i].split()
@@ -179,19 +175,25 @@ def get_opponent(team):
 			return away
 
 def played_both_sides(team, picks):
+	""" checks if both sides (teams) of the same game have been picked """
 	t = get_opponent(team)
 	if t in picks:
 		return True
 	return False
 
 def check_for_valid(picks):
+	""" checks if a given pick is valid. changes an invalid pick to
+	an empth string """
 	for i in range(len(picks)):
 		if not in_schedule(picks[i]) or picked_count(picks[i], picks) > 1 \
 		or played_both_sides(picks[i], picks):
 			picks[i] = ''
 	return picks
 
-def read_picks_from_file():
+def read_picks_from_file()
+	""" each file in EMAIL_PATH contains the picks for a player denoted by
+	each file's name. each file is read and each line is parsed through a regex pattern
+	to determine the team picked """
 	lines = []
 	picks = []
 	for filename in os.listdir(cp_init.EMAIL_PATH):
@@ -206,6 +208,7 @@ def read_picks_from_file():
 				save_player_picks(picks)
 
 def all_possible_outcomes(week=WEEK):
+	""" generator that returns all possible outcomes of a given schedule """
 	games = SCHEDULE['weeks'][week]['games']
 	winners = set()
 	def recurse(index=0):
@@ -220,6 +223,7 @@ def all_possible_outcomes(week=WEEK):
 	yield from recurse()
 
 def get_winners(player):
+	""" returns a list of all possible outcomes where a player has one of the top two scores """
 	winners = []
 	apo = all_possible_outcomes()
 	for i in range(2**cur_week_games):
