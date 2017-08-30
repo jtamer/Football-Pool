@@ -7,7 +7,6 @@ import cp_init
 
 SCHEDULE = cp_init.SCHEDULE
 
-weeks = [week['name'] for week in SCHEDULE['weeks'].values()]
 WEEK = cp_init.CUR_WEEK
 
 patterns = []
@@ -22,7 +21,7 @@ with open(cp_init.PATTERNS_LONG_PATH, encoding='utf-8') as f:
 	patterns_long = [line.strip() for line in patterns_long]	
 	patterns_long = tuple(eval(line) for line in patterns_long) 
 
-MAX = int(len({patterns[i][1] for i in range(len(patterns))}) / 2) # max score for the top pick  e.g. 16. 
+MAX = int(len(SCHEDULE['teams'].keys()) / 2) # max score for the top pick  e.g. 16. 
 
 def load_picks(path=cp_init.JSON_PATH):
         """ Deserialize the picks from the picks json file.
