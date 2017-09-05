@@ -66,8 +66,11 @@ def player_week_key(player, week):
 def init_player_picks(player, week=WEEK):
   """ returns a blank picks list for a single player for a single week """
   game_count = len(get_schedule(week))
-  player_picks = [' ' for i in range(game_count)]
-  player_picks = create_player_picks(player, week, player_picks)
+  try:
+	  player_picks = get_player_picks(player)
+  except KeyError:	
+  	player_picks = [' ' for i in range(game_count)]
+  	player_picks = create_player_picks(player, week, player_picks)
   return player_picks
 	
 def init_picks():
@@ -143,7 +146,6 @@ def write_picks_file(picks=PICKS, week=WEEK):
 			transposed[i][j] = get_team(transposed[i][j])
 			if transposed[i][j] == None:
 				transposed[i][j] = ' '
-			
 	with open('picks.txt', mode='w', encoding='utf-8') as picks_file:
 		for row in zip(*transposed):
 			picks_file.write('\t'.join(row) + '\n')
@@ -197,7 +199,7 @@ def check_for_valid(picks):
 def read_picks_from_file():
 	""" each file in EMAIL_PATH contains the picks for a player denoted by
 	each file's name. each file is read and each line is parsed through a regex pattern
-	to determine the team picked """
+	to determine the team that was picked """
 	lines = []
 	picks = []
 	for filename in os.listdir(cp_init.EMAIL_PATH):
