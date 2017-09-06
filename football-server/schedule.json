@@ -40,7 +40,7 @@
     "Ryan N",
     "Ryan S.",
     "Sean",
-    "XSharon",
+    "Sharon",
     "Tom",
     "XWoody"
   ],
@@ -216,7 +216,6 @@
         ["Jaguars", "Texans"],
         ["Steelers", "Browns"],
         ["Cardinals", "Lions"],
-        ["Buccaneers", "Dolphins"],
         ["Falcons", "Bears"],
         ["Raiders", "Titans"],
         ["Ravens", "Bengals"],
@@ -430,6 +429,7 @@
         ["Bengals", "Broncos"],
         ["Patriots", "Raiders"],
         ["Eagles", "Cowboys"],
+        ["Buccaneers", "Dolphins"],
         ["Falcons", "Seahawks"]
       ]
     },
