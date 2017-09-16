@@ -1,0 +1,558 @@
+{
+  "current_week": "Week2",
+  "players": [
+    "Al & Bob",
+    "Ali",
+    "BJ",
+    "Cary",
+    "Denny",
+    "Danny",
+    "Ed S",
+    "Gary",
+    "Gordy",
+    "Jay",
+    "Jim T",
+    "Joe P.",
+    "John M",
+    "Len",
+    "M&J",
+    "Matt",
+    "Mike K",
+    "Mike W.",
+    "Miro",
+    "Nick",
+    "P&G",
+    "Ray/Chris",
+    "Ryan S.",
+    "Sean",
+    "Sharon",
+    "Tom",
+    "Tony",
+    "Vince M"
+  ],
+  "teams": {
+    "Cardinals": {
+      "logo": "5Mh3xcc8uAsxAi3WZvfEyQ",
+      "city": "Arizona",
+      "name": "Cardinals"
+    },
+    "Falcons": {
+      "logo": "QNdwQPxtIRYUhnMBYq-bSA",
+      "city": "Atlanta",
+      "name": "Falcons"
+    },
+    "Ravens": {
+      "logo": "1vlEqqoyb9uTqBYiBeNH-w",
+      "city": "Baltimore",
+      "name": "Ravens"
+    },
+    "Bills": {
+      "logo": "_RMCkIDTISqCPcSoEvRDhg",
+      "city": "Buffalo",
+      "name": "Bills"
+    },
+    "Panthers": {
+      "logo": "4BdHvKq4Iyxsp8WaAbpDuQ",
+      "city": "Carolina",
+      "name": "Panthers"
+    },
+    "Bears": {
+      "logo": "7uaGv3B13mXyBhHcTysHcA",
+      "city": "Chicago",
+      "name": "Bears"
+    },
+    "Bengals": {
+      "logo": "wDDRqMa40nidAOA5883Vmw",
+      "city": "Cincinnati",
+      "name": "Bengals"
+    },
+    "Browns": {
+      "logo": "bTzlW33n9s53DxRzmlZXyg",
+      "city": "Cleveland",
+      "name": "Browns"
+    },
+    "Cowboys": {
+      "logo": "-zeHm0cuBjZXc2HRxRAI0g",
+      "city": "Dallas",
+      "name": "Cowboys"
+    },
+    "Broncos": {
+      "logo": "ZktET_o_WU6Mm1sJzJLZhQ",
+      "city": "Denver",
+      "name": "Broncos"
+    },
+    "Lions": {
+      "logo": "WE1l856fyyHh6eAbbb8hQQ",
+      "city": "Detroit",
+      "name": "Lions"
+    },
+    "Packers": {
+      "logo": "IlA4VGrUHzSVLCOcHsRKgg",
+      "city": "Green Bay",
+      "name": "Packers"
+    },
+    "Texans": {
+      "logo": "sSUn9HRpYLQtEFF2aG9T8Q",
+      "city": "Houston",
+      "name": "Texans"
+    },
+    "Colts": {
+      "logo": "zOE7BhKadEjaSrrFjcnR4w",
+      "city": "Indianapolis",
+      "name": "Colts"
+    },
+    "Jaguars": {
+      "logo": "HLfqVCxzVx5CUDQ07GLeWg",
+      "city": "Jacksonville",
+      "name": "Jaguars"
+    },
+    "Chiefs": {
+      "logo": "5N0l1KbG1BHPyP8_S7SOXg",
+      "city": "Kansas City",
+      "name": "Chiefs"
+    },
+    "Rams": {
+      "logo": "UyYc_V_6Vabrvr7ous98_A",
+      "city": "Los Angeles",
+      "name": "Rams"
+    },
+    "Dolphins": {
+      "logo": "1ysKnl7VwOQO8g94gbjKdQ",
+      "city": "Miami",
+      "name": "Dolphins"
+    },
+    "Vikings": {
+      "logo": "Vmg4u0BSYZ-1Mc-5uyvxHg",
+      "city": "Minnesota",
+      "name": "Vikings"
+    },
+    "Patriots": {
+      "logo": "z89hPEH9DZbpIYmF72gSaw",
+      "city": "New England",
+      "name": "Patriots"
+    },
+    "Saints": {
+      "logo": "AC5-UEeN3V_fjkdFXtHWfQ",
+      "city": "New Orleans",
+      "name": "Saints"
+    },
+    "Giants": {
+      "logo": "q8qdTYh-OWR5uO_QZxFENw",
+      "city": "New York",
+      "name": "Giants"
+    },
+    "Jets": {
+      "logo": "Rb4y9m3hkTcYVmdl10geqw",
+      "city": "New York",
+      "name": "Jets"
+    },
+    "Raiders": {
+      "logo": "QysqoqJQsTbiJl8sPL12Yg",
+      "city": "Oakland",
+      "name": "Raiders"
+    },
+    "Eagles": {
+      "logo": "s4ab0JjXpDOespDSf9Z14Q",
+      "city": "Philadelphia",
+      "name": "Eagles"
+    },
+    "Steelers": {
+      "logo": "mdUFLAswQ4jZ6V7jXqaxig",
+      "city": "Pittsburgh",
+      "name": "Steelers"
+    },
+    "Chargers": {
+      "logo": "tmQHdnwuMcA9n69f5rBr0w",
+      "city": "Los Angeles",
+      "name": "Chargers"
+    },
+    "49ers": {
+      "logo": "ku3s7M4k5KMagYcFTCie_g",
+      "city": "San Francisco",
+      "name": "49ers"
+    },
+    "Seahawks": {
+      "logo": "iVPY42GLuHmD05DiOvNSVg",
+      "city": "Seattle",
+      "name": "Seahawks"
+    },
+    "Buccaneers": {
+      "logo": "cv5_3oTDQB0gT7l0g2gSGg",
+      "city": "Tampa Bay",
+      "name": "Buccaneers"
+    },
+    "Titans": {
+      "logo": "9J9dhhLeSa3syZ1bWXRjaw",
+      "city": "Tennessee",
+      "name": "Titans"
+    },
+    "Redskins": {
+      "logo": "z_Or7w7bQ_ALmWUNsdd7AQ",
+      "city": "Washington",
+      "name": "Redskins"
+    }
+  },
+  "weeks": {
+    "Week1": {
+      "name": "Week1",
+      "start": "2017-09-07",
+      "end": "2017-09-11",
+      "games": [
+        ["Jets", "Bills"],
+        ["Jaguars", "Texans"],
+        ["Steelers", "Browns"],
+        ["Cardinals", "Lions"],
+        ["Falcons", "Bears"],
+        ["Raiders", "Titans"],
+        ["Ravens", "Bengals"],
+        ["Eagles", "Redskins"],
+        ["Colts", "Rams"],
+        ["Panthers", "49ers"],
+        ["Seahawks", "Packers"],
+        ["Giants", "Cowboys"],
+        ["Saints", "Vikings"],
+        ["Chargers", "Broncos"]
+      ]
+    },
+    "Week2": {
+      "name": "Week2",
+      "start": "2017-09-14",
+      "end": "2017-09-18",
+      "games": [
+        ["Bills", "Panthers"],
+        ["Bears", "Buccaneers"],
+        ["Vikings", "Steelers"],
+        ["Cardinals", "Colts"],
+        ["Patriots", "Saints"],
+        ["Browns", "Ravens"],
+        ["Eagles", "Chiefs"],
+        ["Titans", "Jaguars"],
+        ["Jets", "Raiders"],
+        ["Dolphins", "Chargers"],
+        ["Cowboys", "Broncos"],
+        ["49ers", "Seahawks"],
+        ["Redskins", "Rams"],
+        ["Packers", "Falcons"],
+        ["Lions", "Giants"]
+      ]
+    },
+    "Week3": {
+      "name": "Week3",
+      "start": "2017-09-21",
+      "end": "2017-09-25",
+      "games": [
+        ["Ravens", "Jaguars"],
+        ["Broncos", "Bills"],
+        ["Steelers", "Bears"],
+        ["Saints", "Panthers"],
+        ["Buccaneers", "Vikings"],
+        ["Browns", "Colts"],
+        ["Dolphins", "Jets"],
+        ["Texans", "Patriots"],
+        ["Falcons", "Lions"],
+        ["Giants", "Eagles"],
+        ["Seahawks", "Titans"],
+        ["Chiefs", "Chargers"],
+        ["Bengals", "Packers"],
+        ["Raiders", "Redskins"],
+        ["Cowboys", "Cardinals"]
+      ]
+    },
+    "Week4": {
+      "name": "Week4",
+      "start": "2017-09-28",
+      "end": "2017-10-02",
+      "games": [
+        ["Saints", "Dolphins"],
+        ["Panthers", "Patriots"],
+        ["Jaguars", "Jets"],
+        ["Titans", "Texans"],
+        ["Steelers", "Ravens"],
+        ["Bengals", "Browns"],
+        ["Lions", "Vikings"],
+        ["Rams", "Cowboys"],
+        ["Bills", "Falcons"],
+        ["Eagles", "Chargers"],
+        ["49ers", "Cardinals"],
+        ["Giants", "Buccaneers"],
+        ["Raiders", "Broncos"],
+        ["Colts", "Seahawks"],
+        ["Redskins", "Chiefs"]
+      ]
+    },
+    "Week5": {
+      "name": "Week5",
+      "start": "2017-10-05",
+      "end": "2017-10-09",
+      "games": [
+        ["49ers", "Colts"],
+        ["Jets", "Browns"],
+        ["Jaguars", "Steelers"],
+        ["Chargers", "Giants"],
+        ["Bills", "Bengals"],
+        ["Panthers", "Lions"],
+        ["Titans", "Dolphins"],
+        ["Cardinals", "Eagles"],
+        ["Ravens", "Raiders"],
+        ["Seahawks", "Rams"],
+        ["Packers", "Cowboys"],
+        ["Chiefs", "Texans"],
+        ["Vikings", "Bears"]
+      ]
+    },
+    "Week6": {
+      "name": "Week6",
+      "start": "2017-10-12",
+      "end": "2017-10-16",
+      "games": [
+        ["Bears", "Ravens"],
+        ["Packers", "Vikings"],
+        ["49ers", "Redskins"],
+        ["Lions", "Saints"],
+        ["Dolphins", "Falcons"],
+        ["Browns", "Texans"],
+        ["Patriots", "Jets"],
+        ["Buccaneers", "Cardinals"],
+        ["Rams", "Jaguars"],
+        ["Chargers", "Raiders"],
+        ["Steelers", "Chiefs"],
+        ["Giants", "Broncos"],
+        ["Colts", "Titans"]
+      ]
+    },
+    "Week7": {
+      "name": "Week7",
+      "start": "2017-10-19",
+      "end": "2017-10-23",
+      "games": [
+        ["Bengals", "Steelers"],
+        ["Ravens", "Vikings"],
+        ["Saints", "Packers"],
+        ["Jets", "Dolphins"],
+        ["Panthers", "Bears"],
+        ["Cardinals", "Rams"],
+        ["Buccaneers", "Bills"],
+        ["Jaguars", "Colts"],
+        ["Titans", "Browns"],
+        ["Cowboys", "49ers"],
+        ["Seahawks", "Giants"],
+        ["Broncos", "Chargers"],
+        ["Falcons", "Patriots"],
+        ["Redskins", "Eagles"]
+      ]
+    },
+    "Week8": {
+      "name": "Week8",
+      "start": "2017-10-26",
+      "end": "2017-10-30",
+      "games": [
+        ["Vikings", "Browns"],
+        ["Chargers", "Patriots"],
+        ["Bears", "Saints"],
+        ["Panthers", "Buccaneers"],
+        ["Colts", "Bengals"],
+        ["Raiders", "Bills"],
+        ["49ers", "Eagles"],
+        ["Falcons", "Jets"],
+        ["Texans", "Seahawks"],
+        ["Cowboys", "Redskins"],
+        ["Steelers", "Lions"],
+        ["Broncos", "Chiefs"]
+      ]
+    },
+    "Week9": {
+      "name": "Week9",
+      "start": "2017-11-02",
+      "end": "2017-11-06",
+      "games": [
+        ["Buccaneers", "Saints"],
+        ["Falcons", "Panthers"],
+        ["Rams", "Giants"],
+        ["Ravens", "Titans"],
+        ["Bengals", "Jaguars"],
+        ["Broncos", "Eagles"],
+        ["Colts", "Texans"],
+        ["Redskins", "Seahawks"],
+        ["Cardinals", "49ers"],
+        ["Chiefs", "Cowboys"],
+        ["Raiders", "Dolphins"],
+        ["Lions", "Packers"]
+      ]
+    },
+    "Week10": {
+      "name": "Week10",
+      "start": "2017-11-09",
+      "end": "2017-11-13",
+      "games": [
+        ["Jets", "Buccaneers"],
+        ["Saints", "Bills"],
+        ["Browns", "Lions"],
+        ["Bengals", "Titans"],
+        ["Packers", "Bears"],
+        ["Chargers", "Jaguars"],
+        ["Vikings", "Redskins"],
+        ["Steelers", "Colts"],
+        ["Texans", "Rams"],
+        ["Giants", "49ers"],
+        ["Cowboys", "Falcons"],
+        ["Patriots", "Broncos"],
+        ["Dolphins", "Panthers"]
+      ]
+    },
+    "Week11": {
+      "name": "Week11",
+      "start": "2017-11-16",
+      "end": "2017-11-20",
+      "games": [
+        ["Jaguars", "Browns"],
+        ["Ravens", "Packers"],
+        ["Lions", "Bears"],
+        ["Rams", "Vikings"],
+        ["Cardinals", "Texans"],
+        ["Chiefs", "Giants"],
+        ["Redskins", "Saints"],
+        ["Bills", "Chargers"],
+        ["Bengals", "Broncos"],
+        ["Patriots", "Raiders"],
+        ["Eagles", "Cowboys"],
+        ["Buccaneers", "Dolphins"],
+        ["Falcons", "Seahawks"]
+      ]
+    },
+    "Week12": {
+      "name": "Week12",
+      "start": "2017-11-23",
+      "end": "2017-11-27",
+      "games": [
+        ["Vikings", "Lions"],
+        ["Chargers", "Cowboys"],
+        ["Giants", "Redskins"],
+        ["Browns", "Bengals"],
+        ["Panthers", "Jets"],
+        ["Titans", "Colts"],
+        ["Buccaneers", "Falcons"],
+        ["Dolphins", "Patriots"],
+        ["Bears", "Eagles"],
+        ["Bills", "Chiefs"],
+        ["Seahawks", "49ers"],
+        ["Saints", "Rams"],
+        ["Broncos", "Raiders"],
+        ["Jaguars", "Cardinals"],
+        ["Packers", "Steelers"],
+        ["Texans", "Ravens"]
+      ]
+    },
+    "Week13": {
+      "name": "Week13",
+      "start": "2017-11-30",
+      "end": "2017-12-04",
+      "games": [
+        ["Chiefs", "Jets"],
+        ["Patriots", "Bills"],
+        ["Broncos", "Dolphins"],
+        ["49ers", "Bears"],
+        ["Lions", "Ravens"],
+        ["Panthers", "Saints"],
+        ["Vikings", "Falcons"],
+        ["Buccaneers", "Packers"],
+        ["Texans", "Titans"],
+        ["Colts", "Jaguars"],
+        ["Browns", "Chargers"],
+        ["Rams", "Cardinals"],
+        ["Giants", "Raiders"],
+        ["Eagles", "Seahawks"],
+        ["Steelers", "Bengals"]
+      ]
+    },
+    "Week14": {
+      "name": "Week14",
+      "start": "2017-12-07",
+      "end": "2017-12-11",
+      "games": [
+        ["Seahawks", "Jaguars"],
+        ["Packers", "Browns"],
+        ["Lions", "Buccaneers"],
+        ["Raiders", "Chiefs"],
+        ["Vikings", "Panthers"],
+        ["49ers", "Texans"],
+        ["Colts", "Bills"],
+        ["Bears", "Bengals"],
+        ["Titans", "Cardinals"],
+        ["Jets", "Broncos"],
+        ["Redskins", "Chargers"],
+        ["Eagles", "Rams"],
+        ["Cowboys", "Giants"],
+        ["Ravens", "Steelers"],
+        ["Patriots", "Dolphins"]
+      ]
+    },
+    "Week15": {
+      "name": "Week15",
+      "start": "2017-12-14",
+      "end": "2017-12-18",
+      "games": [
+        ["Bears", "Lions"],
+        ["Chargers", "Chiefs"],
+        ["Eagles", "Giants"],
+        ["Bengals", "Vikings"],
+        ["Ravens", "Browns"],
+        ["Cardinals", "Redskins"],
+        ["Packers", "Panthers"],
+        ["Jets", "Saints"],
+        ["Dolphins", "Bills"],
+        ["Texans", "Jaguars"],
+        ["Rams", "Seahawks"],
+        ["Titans", "49ers"],
+        ["Patriots", "Steelers"],
+        ["Cowboys", "Raiders"],
+        ["Falcons", "Buccaneers"]
+      ]
+    },
+    "Week16": {
+      "name": "Week16",
+      "start": "2017-12-21",
+      "end": "2017-12-25",
+      "games": [
+        ["Colts", "Ravens"],
+        ["Vikings", "Packers"],
+        ["Rams", "Titans"],
+        ["Bills", "Patriots"],
+        ["Browns", "Bears"],
+        ["Falcons", "Saints"],
+        ["Lions", "Bengals"],
+        ["Buccaneers", "Panthers"],
+        ["Dolphins", "Chiefs"],
+        ["Broncos", "Redskins"],
+        ["Chargers", "Jets"],
+        ["Jaguars", "49ers"],
+        ["Seahawks", "Cowboys"],
+        ["Giants", "Cardinals"],
+        ["Steelers", "Texans"],
+        ["Raiders", "Eagles"]
+      ]
+    },
+    "Week17": {
+      "name": "Week17",
+      "start": "2017-12-28",
+      "end": "2018-01-01",
+      "games": [
+        ["Packers", "Lions"],
+        ["Jaguars", "Titans"],
+        ["Bills", "Dolphins"],
+        ["Bengals", "Ravens"],
+        ["Bears", "Vikings"],
+        ["Panthers", "Falcons"],
+        ["Texans", "Colts"],
+        ["Saints", "Buccaneers"],
+        ["Browns", "Steelers"],
+        ["Jets", "Patriots"],
+        ["Redskins", "Giants"],
+        ["Cowboys", "Eagles"],
+        ["Raiders", "Chargers"],
+        ["Cardinals", "Seahawks"],
+        ["49ers", "Rams"],
+        ["Chiefs", "Broncos"]
+      ]
+    }
+  }
+}
