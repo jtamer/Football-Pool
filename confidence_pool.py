@@ -139,7 +139,7 @@ def get_sorted_scores(results, week=WEEK):
 	return scores
 
 def write_picks_file(picks=PICKS, week=WEEK):
-	""" Create a file suitable for importing a week's worth of picks to Excel """
+	""" Create a text file suitable for importing a week's worth of picks to Excel """
 	transposed = [[value['player']] + value['picks'] for _, value in sorted(picks.items()) if value['week'] == week]
 	for i in range(len(players)):
 		for j in range(1,cur_week_games+1):
