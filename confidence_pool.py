@@ -141,11 +141,14 @@ def get_sorted_scores(results, week=WEEK):
 def write_picks_file(picks=PICKS, week=WEEK):
 	""" Create a text file suitable for importing a week's worth of picks to Excel """
 	transposed = [[value['player']] + value['picks'] for _, value in sorted(picks.items()) if value['week'] == week]
-	for i in range(len(players)):
-		for j in range(1,cur_week_games+1):
+	row_count = max(len(column) for column in transposed)
+	for i in range(len(transposed)):
+		for j in range(1, len(transposed[i])):
 			transposed[i][j] = get_team(transposed[i][j])
 			if transposed[i][j] == None:
 				transposed[i][j] = ' '
+		while len(transposed[i]) < row_count:
+			transposed[i].append(' ')
 	with open('picks.txt', mode='w', encoding='utf-8') as picks_file:
 		for row in zip(*transposed):
 			picks_file.write('\t'.join(row) + '\n')
