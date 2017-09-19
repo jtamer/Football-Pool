@@ -140,7 +140,8 @@ def get_sorted_scores(results, week=WEEK):
 
 def write_picks_file(picks=PICKS, week=WEEK):
 	""" Create a text file suitable for importing a week's worth of picks to Excel """
-	transposed = [[value['player']] + value['picks'] for _, value in sorted(picks.items()) if value['week'] == week]
+	#transposed = [[value['player']] + value['picks'] for _, value in sorted(picks.items()) if value['week'] == week]
+	transposed = sorted([[picks[k]['player']] + picks[k]['picks'] for k in picks.keys() if picks[k]['week'] == week])
 	row_count = max(len(column) for column in transposed)
 	for i in range(len(transposed)):
 		for j in range(1, len(transposed[i])):
