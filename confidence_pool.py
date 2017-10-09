@@ -172,7 +172,10 @@ def picked_count(team, picks):
 	that are in the [picks] list """
 	count = 0
 	for i in range(len(picks)):
-		count += team in picks[i]
+		try:
+			count += team in picks[i]
+		except TypeError:
+			continue
 	return count
 
 def get_opponent(team):
