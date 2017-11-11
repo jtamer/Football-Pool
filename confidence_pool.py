@@ -164,7 +164,10 @@ def in_schedule(team):
 	returns team if true else returns ''  """
 	state = False
 	for i in range(cur_week_games):
-		state = state or team in cur_week_sched[i]
+		try:
+			state = state or team in cur_week_sched[i]
+		except TypeError:
+			continue
 	return state
 
 def picked_count(team, picks):
