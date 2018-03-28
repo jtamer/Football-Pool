@@ -195,8 +195,6 @@
   "weeks": {
     "Week1": {
       "name": "Week1",
-      "start": "2017-09-07",
-      "end": "2017-09-11",
       "games": [
         ["Jets", "Bills"],
         ["Jaguars", "Texans"],
