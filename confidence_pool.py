@@ -199,11 +199,11 @@ def played_both_sides(team, picks):
 
 def check_for_valid(picks):
 	""" checks if a given pick is valid. changes an invalid pick to
-	an empth string """
+	an empty string """
 	for i in range(len(picks)):
 		if not in_schedule(picks[i]) or picked_count(picks[i], picks) > 1 \
 		or played_both_sides(picks[i], picks):
-			picks[i] = ' '
+			picks[i] = ''
 	return picks
 
 def read_picks_from_file():
