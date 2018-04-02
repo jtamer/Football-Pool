@@ -7,7 +7,7 @@
       <input type='hidden' name='hiddenpicks' id='hiddenpicks' >
       <table>
         <tr>
-          <td valign="top">
+          <td width="350" valign="top">
             <table id="schedule" cellpadding="5" cellspacing="0"></table>
           </td>
           <td width="100"></td>
@@ -180,9 +180,9 @@ window.onload = function() {
     var option = document.createElement('option');
     option.setAttribute('value', player);
     option.appendChild(document.createTextNode(player));
-    if (player == 'Jim T') {
-      option.setAttribute('selected', true);
-    }
+    //if (player == 'Jim T') {
+    //  option.setAttribute('selected', true);
+    //}
     playerSelect.appendChild(option);
   }
   updateCurrentWeekAndPlayer();

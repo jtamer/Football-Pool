@@ -210,12 +210,11 @@
         ["Giants", "Cowboys"],
         ["Saints", "Vikings"],
         ["Chargers", "Broncos"]
-      ]
+      ],
+      "winners": []
     },
     "Week2": {
       "name": "Week2",
-      "start": "2017-09-14",
-      "end": "2017-09-18",
       "games": [
         ["Bills", "Panthers"],
         ["Bears", "Buccaneers"],
@@ -232,12 +231,11 @@
         ["Redskins", "Rams"],
         ["Packers", "Falcons"],
         ["Lions", "Giants"]
-      ]
+      ],
+      "winners": []
     },
     "Week3": {
       "name": "Week3",
-      "start": "2017-09-21",
-      "end": "2017-09-25",
       "games": [
         ["Ravens", "Jaguars"],
         ["Broncos", "Bills"],
@@ -254,12 +252,11 @@
         ["Bengals", "Packers"],
         ["Raiders", "Redskins"],
         ["Cowboys", "Cardinals"]
-      ]
+      ],
+      "winners": []
     },
     "Week4": {
       "name": "Week4",
-      "start": "2017-09-28",
-      "end": "2017-10-02",
       "games": [
         ["Saints", "Dolphins"],
         ["Panthers", "Patriots"],
@@ -276,12 +273,11 @@
         ["Raiders", "Broncos"],
         ["Colts", "Seahawks"],
         ["Redskins", "Chiefs"]
-      ]
+      ],
+      "winners": []
     },
     "Week5": {
       "name": "Week5",
-      "start": "2017-10-05",
-      "end": "2017-10-09",
       "games": [
         ["49ers", "Colts"],
         ["Jets", "Browns"],
@@ -296,12 +292,11 @@
         ["Packers", "Cowboys"],
         ["Chiefs", "Texans"],
         ["Vikings", "Bears"]
-      ]
+      ],
+      "winners": []
     },
     "Week6": {
       "name": "Week6",
-      "start": "2017-10-12",
-      "end": "2017-10-16",
       "games": [
         ["Bears", "Ravens"],
         ["Packers", "Vikings"],
@@ -316,12 +311,11 @@
         ["Steelers", "Chiefs"],
         ["Giants", "Broncos"],
         ["Colts", "Titans"]
-      ]
+      ],
+      "winners": []
     },
     "Week7": {
       "name": "Week7",
-      "start": "2017-10-19",
-      "end": "2017-10-23",
       "games": [
         ["Bengals", "Steelers"],
         ["Ravens", "Vikings"],
@@ -337,12 +331,11 @@
         ["Broncos", "Chargers"],
         ["Falcons", "Patriots"],
         ["Redskins", "Eagles"]
-      ]
+      ],
+      "winners": []
     },
     "Week8": {
       "name": "Week8",
-      "start": "2017-10-26",
-      "end": "2017-10-30",
       "games": [
         ["Vikings", "Browns"],
         ["Chargers", "Patriots"],
@@ -356,12 +349,11 @@
         ["Cowboys", "Redskins"],
         ["Steelers", "Lions"],
         ["Broncos", "Chiefs"]
-      ]
+      ],
+      "winners": []
     },
     "Week9": {
       "name": "Week9",
-      "start": "2017-11-02",
-      "end": "2017-11-06",
       "games": [
         ["Buccaneers", "Saints"],
         ["Falcons", "Panthers"],
@@ -375,12 +367,11 @@
         ["Chiefs", "Cowboys"],
         ["Raiders", "Dolphins"],
         ["Lions", "Packers"]
-      ]
+      ],
+      "winners": []
     },
     "Week10": {
       "name": "Week10",
-      "start": "2017-11-09",
-      "end": "2017-11-13",
       "games": [
         ["Jets", "Buccaneers"],
         ["Saints", "Bills"],
@@ -395,12 +386,11 @@
         ["Cowboys", "Falcons"],
         ["Patriots", "Broncos"],
         ["Dolphins", "Panthers"]
-      ]
+      ],
+      "winners": []
     },
     "Week11": {
       "name": "Week11",
-      "start": "2017-11-16",
-      "end": "2017-11-20",
       "games": [
         ["Jaguars", "Browns"],
         ["Ravens", "Packers"],
@@ -415,12 +405,11 @@
         ["Eagles", "Cowboys"],
         ["Buccaneers", "Dolphins"],
         ["Falcons", "Seahawks"]
-      ]
+      ],
+      "winners": []
     },
     "Week12": {
       "name": "Week12",
-      "start": "2017-11-23",
-      "end": "2017-11-27",
       "games": [
         ["Vikings", "Lions"],
         ["Chargers", "Cowboys"],
@@ -438,12 +427,11 @@
         ["Jaguars", "Cardinals"],
         ["Packers", "Steelers"],
         ["Texans", "Ravens"]
-      ]
+      ],
+      "winners": []
     },
     "Week13": {
       "name": "Week13",
-      "start": "2017-11-30",
-      "end": "2017-12-04",
       "games": [
         ["Chiefs", "Jets"],
         ["Patriots", "Bills"],
@@ -460,12 +448,11 @@
         ["Giants", "Raiders"],
         ["Eagles", "Seahawks"],
         ["Steelers", "Bengals"]
-      ]
+      ],
+      "winners": []
     },
     "Week14": {
       "name": "Week14",
-      "start": "2017-12-07",
-      "end": "2017-12-11",
       "games": [
         ["Seahawks", "Jaguars"],
         ["Packers", "Browns"],
@@ -482,12 +469,11 @@
         ["Cowboys", "Giants"],
         ["Ravens", "Steelers"],
         ["Patriots", "Dolphins"]
-      ]
+      ],
+      "winners": []
     },
     "Week15": {
       "name": "Week15",
-      "start": "2017-12-14",
-      "end": "2017-12-18",
       "games": [
         ["Bears", "Lions"],
         ["Chargers", "Chiefs"],
@@ -504,12 +490,11 @@
         ["Patriots", "Steelers"],
         ["Cowboys", "Raiders"],
         ["Falcons", "Buccaneers"]
-      ]
+      ],
+      "winners": []
     },
     "Week16": {
       "name": "Week16",
-      "start": "2017-12-21",
-      "end": "2017-12-25",
       "games": [
         ["Colts", "Ravens"],
         ["Vikings", "Packers"],
@@ -527,12 +512,11 @@
         ["Giants", "Cardinals"],
         ["Steelers", "Texans"],
         ["Raiders", "Eagles"]
-      ]
+      ],
+      "winners": []
     },
     "Week17": {
       "name": "Week17",
-      "start": "2017-12-28",
-      "end": "2018-01-01",
       "games": [
         ["Packers", "Lions"],
         ["Jaguars", "Titans"],
@@ -550,7 +534,8 @@
         ["Cardinals", "Seahawks"],
         ["49ers", "Rams"],
         ["Chiefs", "Broncos"]
-      ]
+      ],
+      "winners": []
     }
   }
 }
